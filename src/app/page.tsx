@@ -3,13 +3,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   Play,
   X,
-  LayoutGrid,
-  Rows3,
   Instagram,
   SlidersHorizontal,
 } from "lucide-react";
@@ -22,50 +20,36 @@ import { STUDIO_CONFIG } from "@/data/studioData";
 export default function HomePage() {
   const { locale, openConcierge, projects, essays, heroVideoUrl } = useStudio();
   const [selectedTransformationIndex, setSelectedTransformationIndex] = useState(0);
-  const [portfolioCategory, setPortfolioCategory] = useState<string>("All");
-  const [viewMode, setViewMode] = useState<"grid" | "stack">("grid");
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
 
   const activeTransformation =
     projects[selectedTransformationIndex] || projects[0];
 
-  const categories = [
-    "All",
-    "Residential",
-    "Hospitality",
-    "Bespoke Joinery",
-  ];
-
-  const filteredProjects =
-    portfolioCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === portfolioCategory);
-
   return (
-    <div className="bg-limestone text-espresso">
-      {/* 1. FIRST VIEWPORT: EDITORIAL ARCHITECTURAL HERO + MICRO-LIFE SHOWCASE */}
-      <section className="relative max-w-[1440px] mx-auto px-5 md:px-10 pt-4 pb-20 lg:pb-28 border-b border-espresso/15">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-end mb-8">
+    <div className="bg-limestone text-espresso selection:bg-oxblood selection:text-limestone">
+      {/* 1. FIRST VIEWPORT: EDITORIAL ARCHITECTURAL HERO + MONUMENTAL PRESENCE */}
+      <section className="relative max-w-[1440px] mx-auto px-5 md:px-10 pt-6 pb-20 lg:pb-28 border-b border-espresso/15">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-10">
           <div className="lg:col-span-8">
             <div className="overflow-hidden">
               <motion.h1
                 initial={{ y: "100%" }}
                 animate={{ y: "0%" }}
                 transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-                className="font-serif text-5xl sm:text-6xl lg:text-[76px] font-light tracking-tight leading-[1.01] text-espresso"
+                className="font-serif text-5xl sm:text-6xl lg:text-[80px] font-light tracking-tight leading-[1.01] text-espresso"
               >
                 {locale === "en" ? (
                   <>
                     The Art of Understanding.{" "}
-                    <span className="italic font-normal text-oxblood">
+                    <span className="italic font-normal text-oxblood block sm:inline">
                       Crafted Across Two Continents.
                     </span>
                   </>
                 ) : (
                   <>
                     A Arte de Compreender.{" "}
-                    <span className="italic font-normal text-oxblood">
+                    <span className="italic font-normal text-oxblood block sm:inline">
                       Esculpida Entre Dois Continentes.
                     </span>
                   </>
@@ -75,9 +59,9 @@ export default function HomePage() {
           </div>
 
           <div className="lg:col-span-4 space-y-5">
-            <p className="text-umber text-base sm:text-lg leading-relaxed">
+            <p className="text-umber text-base sm:text-lg leading-relaxed font-light">
               {locale === "en"
-                ? "Every space tells a story. Ours begins by listening. Uniting London spatial psychology with 30 years of bespoke Brazilian joinery in Salvador."
+                ? "Every space tells a story. Ours begins by listening. Uniting London spatial psychology with 30 years of master bespoke joinery in Salvador."
                 : "Cada espaço conta uma história. A nossa começa pela escuta. Unindo a psicologia espacial de Londres a 30 anos de alta marcenaria artesanal em Salvador."}
             </p>
             <div className="flex flex-wrap items-center gap-3">
@@ -106,7 +90,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Full-Bleed Architectural Frame with Micro-Life Loop & Cinema Modal Trigger */}
+        {/* Full-Bleed Architectural Frame with Ramon's Real Flagship Golden Living Room */}
         <div className="relative aspect-[16/9] sm:aspect-[21/10] w-full overflow-hidden border border-espresso/20 bg-obsidian group">
           {heroVideoUrl && !videoFailed ? (
             <video
@@ -132,11 +116,11 @@ export default function HomePage() {
             </div>
           )}
 
-          {/* Subtle Bottom Architectural Metadata Bar (MOUTHWASH Studio / 1508 London inspired) */}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/90 via-obsidian/50 to-transparent p-5 sm:p-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-limestone">
+          {/* Integrated Architectural Colophon Bar */}
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/95 via-obsidian/60 to-transparent p-5 sm:p-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-limestone">
             <div className="space-y-1">
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-sandstone/80 tabular-nums">
-                FEATURED COMMISSION · LONDON SW7 & SALVADOR BAHIA
+              <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-sandstone/80 tabular-nums">
+                FLAGSHIP SALON · LONDON SW7 & SALVADOR BAHIA
               </p>
               <p className="font-serif text-2xl sm:text-3xl font-light">
                 {locale === "en"
@@ -149,7 +133,7 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={() => setVideoModalOpen(true)}
-                className="inline-flex items-center gap-2.5 bg-limestone/95 hover:bg-oxblood text-espresso hover:text-limestone px-5 py-3 text-xs font-mono uppercase tracking-[0.16em] transition-colors"
+                className="inline-flex items-center gap-2.5 bg-limestone text-espresso hover:bg-oxblood hover:text-limestone px-5 py-3 text-xs font-mono uppercase tracking-[0.18em] transition-colors font-medium"
               >
                 <Play className="w-3.5 h-3.5 fill-current" />
                 <span>
@@ -163,13 +147,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. INTERACTIVE BEFORE & AFTER SPATIAL TRANSFORMATION LAB */}
+      {/* 2. SPATIAL METAMORPHOSIS LAB: BEFORE & AFTER ARCHITECTURAL CURE */}
       <section
         id="transformations"
-        className="max-w-[1440px] mx-auto px-5 md:px-10 py-24 lg:py-32 border-b border-espresso/15"
+        className="max-w-[1440px] mx-auto px-5 md:px-10 py-24 lg:py-36 border-b border-espresso/15"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-12">
           <div className="lg:col-span-7 space-y-3">
+            <span className="font-mono text-xs uppercase tracking-[0.24em] text-bronze block">
+              {locale === "en" ? "Diagnostic Metamorphosis" : "Metamorfose Diagnóstica"}
+            </span>
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.04]">
               {locale === "en"
                 ? "Spatial Transformations: Before & After the Cure"
@@ -177,12 +164,12 @@ export default function HomePage() {
             </h2>
           </div>
           <div className="lg:col-span-5 space-y-4">
-            <p className="text-umber text-base leading-relaxed">
+            <p className="text-umber text-base leading-relaxed font-light">
               {locale === "en"
-                ? "Anyone can photograph a styled room. True architectural authority is proven by how we resolve structural bottlenecks, harsh acoustics, and fragmented layouts. Drag the divider or switch commissions below."
-                : "A verdadeira autoridade arquitetônica se prova na forma como resolvemos gargalos estruturais, iluminação fria e plantas compartimentadas. Arraste o divisor ou alterne entre as obras abaixo."}
+                ? "Anyone can photograph a styled room. True architectural authority is proven by how we resolve structural bottlenecks, harsh acoustics, and fragmented layouts. Drag the divider to reveal the architectural resolution."
+                : "A verdadeira autoridade arquitetônica se prova na forma como resolvemos gargalos estruturais, iluminação fria e plantas compartimentadas. Arraste o divisor para inspecionar a resolução construtiva."}
             </p>
-            {/* Commission Switcher */}
+            {/* Commission Switcher Tabs */}
             <div className="flex flex-wrap gap-2 pt-1">
               {projects.slice(0, 3).map((proj, idx) => (
                 <button
@@ -191,7 +178,7 @@ export default function HomePage() {
                   onClick={() => setSelectedTransformationIndex(idx)}
                   className={`px-4 py-2 text-xs font-mono uppercase tracking-[0.15em] border transition-colors ${
                     selectedTransformationIndex === idx
-                      ? "bg-oxblood text-limestone border-oxblood"
+                      ? "bg-oxblood text-limestone border-oxblood font-medium"
                       : "bg-travertine/60 text-espresso border-espresso/20 hover:border-bronze"
                   }`}
                 >
@@ -216,411 +203,459 @@ export default function HomePage() {
         />
       </section>
 
-      {/* 3. CURATED PORTFOLIO CASE STUDIES (Instrument Stack/Grid Switcher + Sophie Paterson Editorial Scale) */}
-      <section className="max-w-[1440px] mx-auto px-5 md:px-10 py-24 lg:py-32">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 border-b border-espresso/15 pb-8">
+      {/* 3. ASYMMETRIC CURATED COMMISSIONS SHOWCASE (1508 London / Sophie Paterson Standard) */}
+      <section className="max-w-[1440px] mx-auto px-5 md:px-10 py-24 lg:py-36 border-b border-espresso/15">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 border-b border-espresso/15 pb-8">
           <div className="space-y-3 max-w-2xl">
+            <span className="font-mono text-xs uppercase tracking-[0.24em] text-bronze block">
+              {locale === "en" ? "Curated Portfolio" : "Portfólio Autoral"}
+            </span>
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.04]">
               {locale === "en"
                 ? "Selected Architectural Commissions"
                 : "Obras e Comissões Selecionadas"}
             </h2>
-            <p className="text-umber text-base">
+            <p className="text-umber text-base leading-relaxed font-light">
               {locale === "en"
-                ? "Each commission is approached as an enduring portrait of the individuals who inhabit it—combining emotional intelligence with technical precision."
-                : "Cada projeto é concebido como um retrato duradouro de quem o habita — unindo inteligência emocional e precisão construtiva."}
+                ? "Each commission is approached as an enduring portrait of the individuals who inhabit it—combining spatial psychology with technical precision."
+                : "Cada projeto é concebido como um retrato duradouro de quem o habita — unindo inteligência emocional e rigor construtivo."}
             </p>
           </div>
 
-          {/* Filter Pills & View Switcher (Mobbin Instrument Pattern) */}
-          <div className="flex flex-wrap items-center justify-between lg:justify-end gap-4">
-            <div className="flex flex-wrap items-center gap-2">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  type="button"
-                  onClick={() => setPortfolioCategory(cat)}
-                  className={`px-3.5 py-2 text-xs font-mono uppercase tracking-[0.14em] border transition-colors ${
-                    portfolioCategory === cat
-                      ? "bg-espresso text-limestone border-espresso"
-                      : "bg-transparent text-espresso border-espresso/20 hover:border-bronze"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-
-            <div className="hidden sm:flex items-center border border-espresso/20">
-              <button
-                type="button"
-                onClick={() => setViewMode("grid")}
-                aria-label="Grid View"
-                className={`p-2.5 ${
-                  viewMode === "grid"
-                    ? "bg-espresso text-limestone"
-                    : "text-espresso hover:bg-travertine"
-                }`}
-              >
-                <LayoutGrid className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => setViewMode("stack")}
-                aria-label="Editorial Stack View"
-                className={`p-2.5 ${
-                  viewMode === "stack"
-                    ? "bg-espresso text-limestone"
-                    : "text-espresso hover:bg-travertine"
-                }`}
-              >
-                <Rows3 className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.18em] text-oxblood hover:text-espresso font-medium transition-colors"
+          >
+            <span>{locale === "en" ? "View Full Archive" : "Ver Acervo Completo"}</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
         </div>
 
-        {/* Project Cards */}
-        <div
-          className={
-            viewMode === "grid"
-              ? "grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14"
-              : "space-y-16"
-          }
-        >
-          {filteredProjects.map((project, index) => (
-            <article
-              key={project.slug}
-              className={`group border border-espresso/15 bg-travertine/40 flex flex-col justify-between ${
-                viewMode === "stack"
-                  ? "lg:grid lg:grid-cols-12 lg:gap-10 lg:items-center p-6 sm:p-8"
-                  : "p-5 sm:p-7"
-              }`}
-            >
-              <div
-                className={
-                  viewMode === "stack" ? "lg:col-span-7" : "w-full mb-6"
-                }
+        {/* Asymmetric Exhibition Flow (No 2x2 Identical Cards) */}
+        <div className="space-y-20 lg:space-y-28">
+          {/* COMMISSION 01: Alphaville I — Panoramic Monumental Feature */}
+          <article className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            <div className="lg:col-span-8">
+              <Link
+                href={`/projects/${projects[0].slug}`}
+                className="block relative aspect-[16/10] w-full overflow-hidden bg-obsidian border border-espresso/15 group"
               >
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="block relative aspect-[16/10] w-full overflow-hidden bg-obsidian"
-                >
-                  <Image
-                    src={project.afterImage}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-center editorial-grade editorial-grade-zoom"
-                  />
-                  <div className="absolute top-4 left-4 bg-obsidian/80 backdrop-blur-sm text-limestone px-3 py-1 text-[10px] font-mono uppercase tracking-[0.18em]">
-                    0{index + 1} · {project.category}
-                  </div>
-                  <div className="absolute bottom-4 right-4 bg-limestone/95 text-espresso px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.16em] flex items-center gap-1.5 opacity-95 group-hover:bg-oxblood group-hover:text-limestone transition-colors">
-                    <span>
-                      {locale === "en" ? "Explore Case Study" : "Ver Projeto"}
-                    </span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </div>
-                </Link>
-              </div>
-
-              <div
-                className={`space-y-4 ${
-                  viewMode === "stack" ? "lg:col-span-5 mt-6 lg:mt-0" : ""
-                }`}
-              >
-                <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.16em] text-umber tabular-nums border-b border-espresso/10 pb-2.5">
-                  <span>{project.location}</span>
-                  <span>
-                    {project.areaSqm} · {project.year}
-                  </span>
+                <Image
+                  src={projects[0].afterImage}
+                  alt={projects[0].title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  className="object-cover object-center editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105"
+                />
+                <div className="absolute top-4 left-4 bg-obsidian/85 backdrop-blur-sm text-limestone px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em]">
+                  COMMISSION 01 · {projects[0].category}
                 </div>
+                <div className="absolute bottom-4 right-4 bg-limestone text-espresso px-4 py-2 text-xs font-mono uppercase tracking-[0.16em] flex items-center gap-2 opacity-95 group-hover:bg-oxblood group-hover:text-limestone transition-colors">
+                  <span>{locale === "en" ? "Explore Case Study" : "Ver Projeto"}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </div>
+              </Link>
+            </div>
 
-                <Link href={`/projects/${project.slug}`} className="block">
-                  <h3 className="font-serif text-3xl sm:text-4xl text-espresso group-hover:text-oxblood transition-colors">
-                    {project.title}
+            <div className="lg:col-span-4 space-y-5">
+              <div className="font-mono text-xs uppercase tracking-[0.18em] text-umber border-b border-espresso/10 pb-3 flex items-center justify-between">
+                <span>{projects[0].location}</span>
+                <span>{projects[0].areaSqm} · {projects[0].year}</span>
+              </div>
+              <Link href={`/projects/${projects[0].slug}`} className="block">
+                <h3 className="font-serif text-3xl sm:text-4xl text-espresso hover:text-oxblood transition-colors leading-tight font-light">
+                  {projects[0].title}
+                </h3>
+              </Link>
+              <p className="text-umber text-sm sm:text-base leading-relaxed font-light">
+                {projects[0].subtitle[locale]}
+              </p>
+              <p className="text-xs font-mono uppercase tracking-widest text-bronze pt-2">
+                Honed Roman Travertine · Fluted Freijó Joinery · Aged Bronze
+              </p>
+            </div>
+          </article>
+
+          {/* COMMISSIONS 02 & 03: Asymmetric Pairing (Portrait Kensington + Architectural Arches) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            {/* Project 2: Kensington Sanctuary (Portrait Focus on Victorian Fireplace & Library) */}
+            <article className="lg:col-span-6 space-y-5">
+              <Link
+                href={`/projects/${projects[1].slug}`}
+                className="block relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden bg-obsidian border border-espresso/15 group"
+              >
+                <Image
+                  src={projects[1].afterImage}
+                  alt={projects[1].title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105"
+                />
+                <div className="absolute top-4 left-4 bg-obsidian/85 backdrop-blur-sm text-limestone px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em]">
+                  COMMISSION 02 · LONDON RESIDENCE
+                </div>
+                <div className="absolute bottom-4 right-4 bg-limestone text-espresso px-3.5 py-1.5 text-xs font-mono uppercase tracking-[0.16em] flex items-center gap-1.5 opacity-95 group-hover:bg-oxblood group-hover:text-limestone transition-colors">
+                  <span>{locale === "en" ? "Explore Case Study" : "Ver Projeto"}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </div>
+              </Link>
+
+              <div className="space-y-2 pt-2">
+                <div className="font-mono text-xs uppercase tracking-[0.18em] text-umber flex items-center justify-between border-b border-espresso/10 pb-2.5">
+                  <span>{projects[1].location}</span>
+                  <span>{projects[1].areaSqm} · {projects[1].year}</span>
+                </div>
+                <Link href={`/projects/${projects[1].slug}`}>
+                  <h3 className="font-serif text-2xl sm:text-3xl text-espresso hover:text-oxblood transition-colors font-light">
+                    {projects[1].title}
                   </h3>
                 </Link>
-
-                <p className="text-umber text-sm sm:text-base leading-relaxed">
-                  {project.subtitle[locale]}
+                <p className="text-umber text-sm leading-relaxed font-light">
+                  {projects[1].subtitle[locale]}
                 </p>
-
-                {/* Material Swatch Pills */}
-                <div className="pt-2 flex flex-wrap items-center gap-2">
-                  {project.materials.slice(0, 3).map((mat) => (
-                    <span
-                      key={mat.name}
-                      className="inline-flex items-center gap-2 px-2.5 py-1 bg-limestone border border-espresso/15 text-[11px] font-mono text-espresso"
-                    >
-                      <span
-                        className="w-2.5 h-2.5 rounded-full border border-espresso/30"
-                        style={{ backgroundColor: mat.swatchHex }}
-                      />
-                      {mat.name}
-                    </span>
-                  ))}
-                </div>
+                <p className="text-[11px] font-mono uppercase tracking-widest text-bronze pt-1">
+                  Smoked Crown-Cut Walnut · Portland Limestone · Cognac Leather
+                </p>
               </div>
             </article>
-          ))}
+
+            {/* Project 3: Rua do Palácio (Hospitality Stone Arches) */}
+            <article className="lg:col-span-6 space-y-5">
+              <Link
+                href={`/projects/${projects[2].slug}`}
+                className="block relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden bg-obsidian border border-espresso/15 group"
+              >
+                <Image
+                  src={projects[2].afterImage}
+                  alt={projects[2].title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105"
+                />
+                <div className="absolute top-4 left-4 bg-obsidian/85 backdrop-blur-sm text-limestone px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em]">
+                  COMMISSION 03 · HOSPITALITY LOUNGE
+                </div>
+                <div className="absolute bottom-4 right-4 bg-limestone text-espresso px-3.5 py-1.5 text-xs font-mono uppercase tracking-[0.16em] flex items-center gap-1.5 opacity-95 group-hover:bg-oxblood group-hover:text-limestone transition-colors">
+                  <span>{locale === "en" ? "Explore Case Study" : "Ver Projeto"}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </div>
+              </Link>
+
+              <div className="space-y-2 pt-2">
+                <div className="font-mono text-xs uppercase tracking-[0.18em] text-umber flex items-center justify-between border-b border-espresso/10 pb-2.5">
+                  <span>{projects[2].location}</span>
+                  <span>{projects[2].areaSqm} · {projects[2].year}</span>
+                </div>
+                <Link href={`/projects/${projects[2].slug}`}>
+                  <h3 className="font-serif text-2xl sm:text-3xl text-espresso hover:text-oxblood transition-colors font-light">
+                    {projects[2].title}
+                  </h3>
+                </Link>
+                <p className="text-umber text-sm leading-relaxed font-light">
+                  {projects[2].subtitle[locale]}
+                </p>
+                <p className="text-[11px] font-mono uppercase tracking-widest text-bronze pt-1">
+                  19th-Century Stone Masonry · Terracotta Velvet · Aged Brass
+                </p>
+              </div>
+            </article>
+          </div>
+
+          {/* COMMISSION 04: Alphaville II — The Collector's Salon (Ramon's Authentic Completed Masterpiece) */}
+          <article className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center pt-8 border-t border-espresso/15">
+            <div className="lg:col-span-5 space-y-5 lg:order-1 order-2">
+              <div className="font-mono text-xs uppercase tracking-[0.18em] text-umber border-b border-espresso/10 pb-3 flex items-center justify-between">
+                <span>{projects[3].location}</span>
+                <span>{projects[3].areaSqm} · {projects[3].year}</span>
+              </div>
+              <Link href={`/projects/${projects[3].slug}`} className="block">
+                <h3 className="font-serif text-3xl sm:text-4xl text-espresso hover:text-oxblood transition-colors leading-tight font-light">
+                  {projects[3].title}
+                </h3>
+              </Link>
+              <p className="text-umber text-sm sm:text-base leading-relaxed font-light">
+                {projects[3].subtitle[locale]}
+              </p>
+              <p className="text-xs font-mono uppercase tracking-widest text-bronze pt-2">
+                Custom Boiserie · Solid Sucupira Hardwood · Classical Plinths
+              </p>
+              <div className="pt-2">
+                <Link
+                  href={`/projects/${projects[3].slug}`}
+                  className="inline-flex items-center gap-2 bg-espresso hover:bg-oxblood text-limestone px-6 py-3 text-xs uppercase tracking-[0.18em] font-medium transition-colors"
+                >
+                  <span>{locale === "en" ? "Inspect Masterpiece Dossier" : "Ver Dossiê da Obra"}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 lg:order-2 order-1">
+              <Link
+                href={`/projects/${projects[3].slug}`}
+                className="block relative aspect-[16/10] w-full overflow-hidden bg-obsidian border border-espresso/15 group"
+              >
+                <Image
+                  src="/images/residential_alphaville_1.png"
+                  alt="Alphaville II Collector's Salon with custom boiserie and classical bust"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  className="object-cover object-center editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105"
+                />
+                <div className="absolute top-4 left-4 bg-obsidian/85 backdrop-blur-sm text-limestone px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em]">
+                  COMMISSION 04 · BESPOKE JOINERY ATELIER
+                </div>
+              </Link>
+            </div>
+          </article>
         </div>
       </section>
 
-      {/* 4. THREE PERSPECTIVES & 30-YEAR BESPOKE JOINERY PARALLAX GALLERY */}
+      {/* 4. THREE DECADES OF MASTER JOINERY (Museum-Grade Provenance Monograph) */}
       <CraftsmanshipZoomGallery />
 
-      {/* 5. SPATIAL PSYCHOLOGY & NEURODESIGN INTERACTIVE EXPLORER */}
+      {/* 5. SPATIAL PSYCHOLOGY & NEURODESIGN (Atmospheric Grounding) */}
       <NeurodesignExplorer />
 
-      {/* 6. UNIFIED FOUNDER IDENTITY: RAMON BENNETT (@ramonbennettofficial + @ramonbennettinteriors) */}
-      <section className="max-w-[1440px] mx-auto px-5 md:px-10 py-24 lg:py-32 border-b border-espresso/15">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* 6. THE PRINCIPAL: RAMON BENNETT (Editorial Salon Byline & Spatial Philosophy) */}
+      <section className="max-w-[1440px] mx-auto px-5 md:px-10 py-24 lg:py-36 border-b border-espresso/15">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-5">
-            <div className="relative aspect-[3/4] w-full max-w-md mx-auto overflow-hidden border border-espresso/20 bg-obsidian">
+            <div className="relative aspect-[3/4] w-full max-w-md mx-auto overflow-hidden border border-espresso/20 bg-travertine/40">
               <Image
                 src="/images/people_ramon.png"
-                alt="Ramon Bennett — Founder, Interior Architect, Writer & Speaker"
+                alt="Ramon Bennett — Principal, Interior Architect, Author & Spatial Psychologist"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-top editorial-grade"
               />
               <div className="absolute bottom-0 inset-x-0 bg-obsidian/90 backdrop-blur-sm p-5 text-limestone border-t border-limestone/15">
-                <p className="font-serif text-2xl">Ramon Bennett</p>
-                <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-bronze mt-0.5">
-                  FOUNDER · INTERIOR ARCHITECT · AUTHOR & SPEAKER
+                <p className="font-serif text-2xl font-light">Ramon Bennett</p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-sandstone/80 mt-0.5">
+                  PRINCIPAL · SPATIAL PSYCHOLOGY & INTERIOR ARCHITECTURE
                 </p>
               </div>
             </div>
           </div>
 
           <div className="lg:col-span-7 space-y-6">
-            <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-espresso tracking-tight leading-[1.05]">
+            <span className="font-mono text-xs uppercase tracking-[0.24em] text-bronze block">
+              {locale === "en" ? "Founder & Philosophy" : "Fundador & Filosofia"}
+            </span>
+            <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-espresso tracking-tight leading-[1.04]">
               {locale === "en"
-                ? "One Unified Philosophy: Interior Architecture, Human Relationships & The Art of Living."
-                : "Uma Filosofia Única: Arquitetura de Interiores, Relações Humanas e a Arte de Viver."}
+                ? "“A room is not a static picture. It is the emotional vessel of your daily life.”"
+                : "“Uma sala não é uma imagem estática. É o refúgio emocional da sua vida diária.”"}
             </h2>
 
-            <p className="text-umber text-base sm:text-lg leading-relaxed">
+            <p className="text-umber text-base sm:text-lg leading-relaxed font-light">
               {locale === "en"
-                ? "Having lived and worked in London for 17 years across Human & Medical Sciences, Law, and Psychotherapy before returning to unite his family's 30-year bespoke joinery heritage in Salvador, Ramon Bennett approaches interior design not as surface decoration, but as an extension of human psychology."
-                : "Após viver por 17 anos em Londres dedicando-se às Ciências Humanas, Direito e Psicoterapia antes de unir o legado de 30 anos de alta marcenaria de sua família em Salvador, Ramon Bennett concebe o design de interiores como uma extensão direta da psicologia humana."}
+                ? "Having lived and practiced in London for 17 years across Human & Medical Sciences, Law, and Psychotherapy before uniting his family's 30-year bespoke joinery heritage in Salvador, Ramon Bennett approaches interior design not as surface decoration, but as an architectural extension of human intimacy."
+                : "Após 17 anos em Londres dedicando-se às Ciências Humanas, Direito e Psicoterapia antes de unir o legado de 30 anos de alta marcenaria de sua família em Salvador, Ramon Bennett concebe a arquitetura de interiores não como decoração superficial, mas como uma extensão direta da intimidade humana."}
             </p>
 
-            <p className="text-umber text-base leading-relaxed">
-              {locale === "en"
-                ? "Through his writing, international speaking (@ramonbennettofficial), and architectural commissions (@ramonbennettinteriors), his work explores a single enduring question: how do the spaces we inhabit shape the way we think, rest, and connect with those we love?"
-                : "Por meio de seus livros, palestras (@ramonbennettofficial) e projetos arquitetônicos (@ramonbennettinteriors), seu trabalho responde a uma pergunta essencial: como os espaços que habitamos moldam nossa mente, nosso descanso e nossas relações?"}
-            </p>
-
-            {/* Dual Brand Ecosystem Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <a
-                href={STUDIO_CONFIG.instagramStudio}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-5 bg-travertine border border-espresso/15 hover:border-oxblood transition-colors group"
-              >
-                <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.16em] text-oxblood mb-2">
-                  <span className="flex items-center gap-2">
-                    <Instagram className="w-4 h-4" />
-                    @ramonbennettinteriors
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </div>
-                <p className="font-serif text-xl text-espresso">
-                  {locale === "en"
-                    ? "The Architectural Portfolio"
-                    : "O Portfólio Arquitetônico"}
-                </p>
-                <p className="text-xs text-umber mt-1">
-                  {locale === "en"
-                    ? "Curated residential, hospitality & bespoke joinery commissions in London and Salvador."
-                    : "Projetos residenciais, hospitalidade e alta marcenaria sob medida em Londres e Salvador."}
-                </p>
-              </a>
-
-              <a
-                href={STUDIO_CONFIG.instagramPersonal}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-5 bg-travertine border border-espresso/15 hover:border-oxblood transition-colors group"
-              >
-                <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.16em] text-oxblood mb-2">
-                  <span className="flex items-center gap-2">
-                    <Instagram className="w-4 h-4" />
-                    @ramonbennettofficial
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </div>
-                <p className="font-serif text-xl text-espresso">
-                  {locale === "en"
-                    ? "Personal Brand, Writing & Speaking"
-                    : "Marca Pessoal, Escrita & Palestras"}
-                </p>
-                <p className="text-xs text-umber mt-1">
-                  {locale === "en"
-                    ? "Editorial essays, keynotes, human relationships, and the psychology of luxury living."
-                    : "Ensaios editoriais, palestras, relações humanas e a psicologia do viver com propósito."}
-                </p>
-              </a>
+            <div className="pt-2 pb-4 space-y-3 font-mono text-xs uppercase tracking-[0.16em] text-espresso border-y border-espresso/10 py-4">
+              <div className="flex items-center justify-between">
+                <span className="text-umber">London SW7 Practice</span>
+                <span className="text-bronze">Spatial Psychology & Private Commissions</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-umber">Salvador Bahia Atelier</span>
+                <span className="text-bronze">Master Joinery Fabrication (Aunt Márcia)</span>
+              </div>
             </div>
 
-            <div className="pt-4 flex flex-wrap gap-4">
+            <div className="pt-2 flex flex-wrap items-center gap-4">
               <Link
                 href="/founder"
                 className="inline-flex items-center gap-2 bg-espresso hover:bg-oxblood text-limestone px-6 py-3.5 text-xs uppercase tracking-[0.18em] font-medium transition-colors"
               >
                 <span>
                   {locale === "en"
-                    ? "Explore Founder & Speaking Profile"
-                    : "Ver Perfil do Fundador & Palestras"}
+                    ? "Read Founder Monograph & Speaking Profile"
+                    : "Ver Perfil Completo do Fundador & Palestras"}
                 </span>
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
+              <a
+                href={STUDIO_CONFIG.instagramStudio}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-espresso/25 hover:border-bronze text-espresso px-5 py-3.5 text-xs font-mono uppercase tracking-[0.16em] transition-colors"
+              >
+                <Instagram className="w-3.5 h-3.5 text-bronze" />
+                <span>@ramonbennettinteriors</span>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 7. EDITORIAL JOURNAL & ESSAYS */}
-      <section className="max-w-[1440px] mx-auto px-5 md:px-10 py-24 lg:py-32">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 border-b border-espresso/15 pb-8">
+      {/* 7. THE EDITORIAL JOURNAL (Lead Feature Monograph + Curated Reading Index) */}
+      <section className="max-w-[1440px] mx-auto px-5 md:px-10 py-24 lg:py-36">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 border-b border-espresso/15 pb-8">
           <div className="space-y-2">
+            <span className="font-mono text-xs uppercase tracking-[0.24em] text-bronze block">
+              {locale === "en" ? "Architectural Monographs" : "Monografias Arquitetônicas"}
+            </span>
             <h2 className="font-serif text-4xl sm:text-5xl font-light text-espresso tracking-tight">
               {locale === "en"
-                ? "The Journal: Essays on Space, Craft & Human Connection"
-                : "Journal: Ensaios sobre Espaço, Ofício e Relações Humanas"}
+                ? "The Journal: Essays on Space, Craft & Neurodesign"
+                : "Journal: Ensaios sobre Espaço, Ofício e Neurodesign"}
             </h2>
           </div>
           <Link
             href="/journal"
-            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.18em] text-oxblood hover:text-espresso font-medium"
+            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.18em] text-oxblood hover:text-espresso font-medium transition-colors"
           >
-            <span>
-              {locale === "en" ? "Read All Essays" : "Ler Todos os Ensaios"}
-            </span>
+            <span>{locale === "en" ? "View All Essays" : "Ver Todos os Ensaios"}</span>
             <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {essays.slice(0, 3).map((essay) => (
+        {/* Gazette Layout: Lead Feature (7 cols) + Reading List (5 cols) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Lead Monograph */}
+          <article className="lg:col-span-7 space-y-6">
             <Link
-              key={essay.slug}
-              href={`/journal/${essay.slug}`}
-              className="group border border-espresso/15 bg-travertine/35 p-5 flex flex-col justify-between hover:border-bronze transition-colors"
+              href={`/journal/${essays[0].slug}`}
+              className="block relative aspect-[16/10] w-full overflow-hidden bg-obsidian border border-espresso/15 group"
             >
-              <div className="space-y-4">
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-obsidian">
-                  <Image
-                    src={essay.coverImage}
-                    alt={essay.title[locale]}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover object-center editorial-grade editorial-grade-zoom"
-                  />
-                </div>
-                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.14em] text-bronze">
-                  <span>{essay.category[locale]}</span>
-                  <span>{essay.readTime}</span>
-                </div>
-                <h3 className="font-serif text-2xl text-espresso group-hover:text-oxblood transition-colors leading-snug">
-                  {essay.title[locale]}
-                </h3>
-                <p className="text-sm text-umber leading-relaxed line-clamp-3">
-                  {essay.excerpt[locale]}
-                </p>
-              </div>
-
-              <div className="pt-5 mt-5 border-t border-espresso/10 flex items-center justify-between text-xs font-mono uppercase tracking-[0.16em] text-espresso">
-                <span>{locale === "en" ? "Read Essay" : "Ler Ensaio"}</span>
-                <ArrowUpRight className="w-4 h-4 text-oxblood" />
+              <Image
+                src={essays[0].coverImage}
+                alt={essays[0].title[locale]}
+                fill
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                className="object-cover object-center editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105"
+              />
+              <div className="absolute top-4 left-4 bg-obsidian/85 backdrop-blur-sm text-limestone px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em]">
+                LEAD MONOGRAPH · {essays[0].category[locale]}
               </div>
             </Link>
-          ))}
+
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-bronze">
+                <span>{essays[0].date}</span>
+                <span>·</span>
+                <span>{essays[0].readTime}</span>
+              </div>
+              <Link href={`/journal/${essays[0].slug}`}>
+                <h3 className="font-serif text-3xl sm:text-4xl text-espresso hover:text-oxblood transition-colors font-light leading-tight">
+                  {essays[0].title[locale]}
+                </h3>
+              </Link>
+              <p className="text-umber text-sm sm:text-base leading-relaxed font-light line-clamp-3">
+                {essays[0].excerpt[locale]}
+              </p>
+              <div className="pt-2">
+                <Link
+                  href={`/journal/${essays[0].slug}`}
+                  className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.16em] text-oxblood hover:text-espresso font-medium"
+                >
+                  <span>{locale === "en" ? "Read Full Essay" : "Ler Ensaio Completo"}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+          </article>
+
+          {/* Curated Monograph List */}
+          <div className="lg:col-span-5 space-y-8 divide-y divide-espresso/15">
+            {essays.slice(1, 3).map((essay) => (
+              <article key={essay.slug} className="pt-8 first:pt-0 space-y-3 group">
+                <div className="flex items-center gap-3 text-[11px] font-mono uppercase tracking-widest text-bronze">
+                  <span>{essay.category[locale]}</span>
+                  <span>·</span>
+                  <span>{essay.readTime}</span>
+                </div>
+                <Link href={`/journal/${essay.slug}`} className="block">
+                  <h4 className="font-serif text-2xl text-espresso group-hover:text-oxblood transition-colors leading-snug font-light">
+                    {essay.title[locale]}
+                  </h4>
+                </Link>
+                <p className="text-xs sm:text-sm text-umber leading-relaxed font-light line-clamp-2">
+                  {essay.excerpt[locale]}
+                </p>
+                <Link
+                  href={`/journal/${essay.slug}`}
+                  className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-widest text-oxblood font-medium pt-1"
+                >
+                  <span>{locale === "en" ? "Open Monograph" : "Abrir Monografia"}</span>
+                  <ArrowUpRight className="w-3 h-3" />
+                </Link>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* FULLSCREEN ATELIER FILM & PHILOSOPHY MODAL */}
-      <AnimatePresence>
-        {videoModalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-obsidian/95 backdrop-blur-md flex items-center justify-center p-5 md:p-12"
-          >
-            <div className="max-w-5xl w-full bg-obsidian border border-limestone/20 p-6 sm:p-8 space-y-6 text-limestone">
-              <div className="flex items-center justify-between border-b border-limestone/15 pb-4">
-                <div>
-                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-bronze">
-                    RAMON BENNETT INTERIORS · ATELIER SHOWREEL
-                  </p>
-                  <h3 className="font-serif text-2xl sm:text-3xl mt-1">
-                    {locale === "en"
-                      ? "The Art of Understanding — London & Salvador"
-                      : "A Arte de Compreender — Londres & Salvador"}
-                  </h3>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setVideoModalOpen(false)}
-                  className="p-2 border border-limestone/25 hover:border-limestone"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+      {/* FULLSCREEN CINEMA MODAL */}
+      {videoModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-300">
+          <div className="relative w-full max-w-5xl bg-obsidian text-limestone border border-limestone/20 p-6 sm:p-8 space-y-6">
+            <div className="flex items-center justify-between border-b border-limestone/15 pb-4">
+              <div>
+                <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-sandstone/70 block">
+                  ATELIER CINEMA · LONDON & SALVADOR
+                </span>
+                <p className="font-serif text-2xl text-limestone font-light">
+                  {locale === "en" ? "The Art of Understanding" : "A Arte de Compreender"}
+                </p>
               </div>
+              <button
+                type="button"
+                onClick={() => setVideoModalOpen(false)}
+                className="p-2 border border-limestone/25 hover:border-limestone text-limestone transition-colors"
+                aria-label="Close Cinema"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
-              {heroVideoUrl ? (
-                <div className="aspect-video w-full bg-black overflow-hidden">
-                  <video
-                    src={heroVideoUrl}
-                    controls
-                    autoPlay
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ) : (
-                <div className="relative aspect-video w-full overflow-hidden border border-limestone/15">
-                  <Image
-                    src="/images/home_golden_living_room.png"
-                    alt="Atelier Film Preview"
-                    fill
-                    sizes="100vw"
-                    className="object-cover object-center animate-micro-life"
-                  />
-                  <div className="absolute inset-0 bg-obsidian/55 flex flex-col items-center justify-center text-center p-6 space-y-4">
-                    <p className="font-serif text-3xl sm:text-4xl max-w-2xl">
-                      {locale === "en"
-                        ? "“Every space tells a story. Ours begins by listening.”"
-                        : "“Cada espaço conta uma história. A nossa começa pela escuta.”"}
-                    </p>
-                    <p className="text-sm text-sandstone/85 max-w-xl">
-                      {locale === "en"
-                        ? "Ramon can paste or upload his custom Homepage MP4 Showreel at any time via the Studio Visual CMS (/admin) and it will automatically play here and in the homepage background."
-                        : "Você pode adicionar ou atualizar o vídeo principal MP4 a qualquer momento através do Painel Visual (/admin)."}
-                    </p>
+            {heroVideoUrl && !videoFailed ? (
+              <div className="aspect-video w-full bg-black overflow-hidden">
+                <video
+                  src={heroVideoUrl}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ) : (
+              <div className="relative aspect-video w-full overflow-hidden border border-limestone/15">
+                <Image
+                  src="/images/home_golden_living_room.png"
+                  alt="Atelier Film Preview"
+                  fill
+                  sizes="100vw"
+                  className="object-cover object-center animate-micro-life"
+                />
+                <div className="absolute inset-0 bg-obsidian/60 flex flex-col items-center justify-center text-center p-6 space-y-4">
+                  <p className="font-serif text-3xl sm:text-4xl max-w-2xl font-light">
+                    {locale === "en"
+                      ? "“Every space tells a story. Ours begins by listening.”"
+                      : "“Cada espaço conta uma história. A nossa começa pela escuta.”"}
+                  </p>
+                  <p className="text-sm text-sandstone/85 max-w-xl font-light">
+                    {locale === "en"
+                      ? "Direct video playback is currently serving our ambient loop. You can also configure a custom video URL anytime in the studio admin."
+                      : "A reprodução de vídeo está ativa. Você também pode alterar o link do vídeo pelo painel administrativo do estúdio."}
+                  </p>
+                  <div className="pt-2">
                     <Link
                       href="/admin"
                       onClick={() => setVideoModalOpen(false)}
-                      className="inline-flex items-center gap-2 bg-oxblood text-limestone px-6 py-3 text-xs font-mono uppercase tracking-[0.18em]"
+                      className="px-6 py-3 bg-limestone text-espresso hover:bg-oxblood hover:text-limestone font-mono text-xs uppercase tracking-widest transition-colors font-medium"
                     >
-                      <span>
-                        {locale === "en"
-                          ? "Open Studio Video Manager (/admin)"
-                          : "Abrir Gerenciador de Vídeo (/admin)"}
-                      </span>
-                      <ArrowUpRight className="w-4 h-4" />
+                      {locale === "en" ? "Studio Video Manager (/admin)" : "Gerenciador de Vídeo (/admin)"}
                     </Link>
                   </div>
                 </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
