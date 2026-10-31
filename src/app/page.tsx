@@ -25,6 +25,7 @@ export default function HomePage() {
   const [portfolioCategory, setPortfolioCategory] = useState<string>("All");
   const [viewMode, setViewMode] = useState<"grid" | "stack">("grid");
   const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
 
   const activeTransformation =
     projects[selectedTransformationIndex] || projects[0];
@@ -107,13 +108,15 @@ export default function HomePage() {
 
         {/* Full-Bleed Architectural Frame with Micro-Life Loop & Cinema Modal Trigger */}
         <div className="relative aspect-[16/9] sm:aspect-[21/10] w-full overflow-hidden border border-espresso/20 bg-obsidian group">
-          {heroVideoUrl ? (
+          {heroVideoUrl && !videoFailed ? (
             <video
               src={heroVideoUrl}
+              poster="/images/01_hero_salvador_london_penthouse.jpg"
               autoPlay
               muted
               loop
               playsInline
+              onError={() => setVideoFailed(true)}
               className="w-full h-full object-cover editorial-grade"
             />
           ) : (
