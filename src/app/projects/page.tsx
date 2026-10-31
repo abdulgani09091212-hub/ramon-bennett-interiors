@@ -177,18 +177,44 @@ function PortfolioContent() {
               </div>
 
               {viewMode === "stack" ? (
-                <BeforeAfterSlider
-                  projectSlug={project.slug}
-                  projectTitle={project.title}
-                  location={project.location}
-                  coordinates={project.coordinates}
-                  beforeImage={project.beforeImage}
-                  afterImage={project.afterImage}
-                  beforeLabel={project.beforeLabel}
-                  afterLabel={project.afterLabel}
-                  curePins={project.curePins}
-                  showCaseStudyLink={false}
-                />
+                project.beforeImage && project.beforeImage !== project.afterImage ? (
+                  <BeforeAfterSlider
+                    projectSlug={project.slug}
+                    projectTitle={project.title}
+                    location={project.location}
+                    coordinates={project.coordinates}
+                    beforeImage={project.beforeImage}
+                    afterImage={project.afterImage}
+                    beforeLabel={project.beforeLabel}
+                    afterLabel={project.afterLabel}
+                    curePins={project.curePins}
+                    showCaseStudyLink={false}
+                  />
+                ) : (
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="block relative aspect-[16/9] w-full overflow-hidden bg-obsidian group border border-espresso/15"
+                  >
+                    <Image
+                      src={project.afterImage}
+                      alt={project.title}
+                      fill
+                      sizes="100vw"
+                      className="object-cover object-center editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-obsidian/70 via-transparent to-transparent flex items-end p-6 sm:p-8">
+                      <div className="text-limestone flex items-center justify-between w-full">
+                        <span className="font-mono text-xs uppercase tracking-widest text-sandstone/80">
+                          {locale === "en" ? "Curated Architectural Dossier" : "Dossiê Arquitetônico Autoral"}
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-oxblood text-limestone font-mono text-[11px] uppercase tracking-widest group-hover:bg-espresso transition-colors">
+                          {locale === "en" ? "Explore Case Study" : "Ver Projeto"}
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                )
               ) : (
                 <Link
                   href={`/projects/${project.slug}`}
