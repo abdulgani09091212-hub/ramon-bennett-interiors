@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Compass, ShieldCheck, Hammer, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useStudio } from "@/context/StudioContext";
 import { STUDIO_HERITAGE_STORY, PROJECTS_DATA } from "@/data/studioData";
 import CraftsmanshipZoomGallery from "@/components/CraftsmanshipZoomGallery";
@@ -176,13 +176,9 @@ export default function StudioPage() {
                     {idx === 1 && (locale === "en" ? "30+ Yrs Bespoke Joinery" : "30+ Anos de Alta Marcenaria")}
                     {idx === 2 && (locale === "en" ? "10 Yrs Legal & Turnkey Governance" : "10 Anos de Rigor Jurídico")}
                   </span>
-                  {idx === 0 ? (
-                    <Compass className="w-4 h-4" />
-                  ) : idx === 1 ? (
-                    <Hammer className="w-4 h-4" />
-                  ) : (
-                    <ShieldCheck className="w-4 h-4" />
-                  )}
+                  <span className="text-[10px] tracking-widest text-[#8C6239] uppercase">
+                    {idx === 0 ? "01 · PRINCIPAL" : idx === 1 ? "02 · MASTER ATELIER" : "03 · GOVERNANCE"}
+                  </span>
                 </div>
               </div>
             ))}
@@ -220,7 +216,7 @@ export default function StudioPage() {
         <div className="mt-16 bg-[#EDE6D8] border border-[#181412]/10 p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div className="space-y-2 max-w-2xl">
             <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-[#8C6239]">
-              <Sparkles className="w-4 h-4" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#8C6239]" />
               {locale === "en" ? "Begin Your Commission" : "Inicie Seu Projeto"}
             </div>
             <h3 className="font-serif text-2xl md:text-4xl text-[#181412]">

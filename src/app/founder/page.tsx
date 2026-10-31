@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mic, BookOpen, Brain, Instagram, Compass, Globe2 } from "lucide-react";
+import { ArrowUpRight, Mic, BookOpen, Instagram } from "lucide-react";
 import { useStudio } from "@/context/StudioContext";
 import { STUDIO_CONFIG, JOURNAL_ESSAYS } from "@/data/studioData";
 import NeurodesignExplorer from "@/components/NeurodesignExplorer";
@@ -263,11 +263,11 @@ export default function FounderPage() {
                   {item.detail[locale]}
                 </p>
               </div>
-              <div className="mt-8 pt-4 border-t border-[#181412]/10 flex items-center gap-2 font-mono text-xs text-[#181412]">
-                {idx === 0 && <Brain className="w-4 h-4 text-[#8C6239]" />}
-                {idx === 1 && <Compass className="w-4 h-4 text-[#8C6239]" />}
-                {idx === 2 && <Globe2 className="w-4 h-4 text-[#8C6239]" />}
-                <span>
+              <div className="mt-8 pt-4 border-t border-[#181412]/10 flex items-center justify-between font-mono text-xs text-[#181412]">
+                <span className="text-[#8C6239] text-[10px] tracking-widest uppercase">
+                  {`[ DISCIPLINE 0${idx + 1} ]`}
+                </span>
+                <span className="text-xs text-[#524942]">
                   {idx === 0 && (locale === "en" ? "Clinical & Behavioural Depth" : "Escuta Clínica e Humana")}
                   {idx === 1 && (locale === "en" ? "Master Workshop Provenance" : "Tradição Construtivo-Artesanal")}
                   {idx === 2 && (locale === "en" ? "Transatlantic Practice" : "Atuação Transatlântica")}

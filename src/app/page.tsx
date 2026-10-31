@@ -111,7 +111,7 @@ export default function HomePage() {
           {heroVideoUrl && !videoFailed ? (
             <video
               src={heroVideoUrl}
-              poster="/images/01_hero_salvador_london_penthouse.jpg"
+              poster="/images/home_golden_living_room.png"
               autoPlay
               muted
               loop
@@ -122,8 +122,8 @@ export default function HomePage() {
           ) : (
             <div className="relative w-full h-full overflow-hidden">
               <Image
-                src="/images/01_hero_salvador_london_penthouse.jpg"
-                alt="Ramon Bennett Interiors — London Georgian Proportions Meets Brazilian Louro Preto Walnut Joinery"
+                src="/images/home_golden_living_room.png"
+                alt="Ramon Bennett Interiors — Golden Hour Brazilian Walnut Joinery & Restorative Spatial Architecture"
                 fill
                 sizes="100vw"
                 priority
@@ -585,7 +585,7 @@ export default function HomePage() {
               ) : (
                 <div className="relative aspect-video w-full overflow-hidden border border-limestone/15">
                   <Image
-                    src="/images/01_hero_salvador_london_penthouse.jpg"
+                    src="/images/home_golden_living_room.png"
                     alt="Atelier Film Preview"
                     fill
                     sizes="100vw"

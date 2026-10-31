@@ -122,34 +122,36 @@ export default function ProjectDetailPage() {
         </div>
       </section>
 
-      {/* Interactive Before & After Spatial Transformation Slider */}
-      <section className="max-w-[1440px] mx-auto px-5 md:px-10 py-20 lg:py-28 border-b border-espresso/15">
-        <div className="mb-10 max-w-2xl space-y-2">
-          <h2 className="font-serif text-4xl sm:text-5xl font-light text-espresso">
-            {locale === "en"
-              ? "Interactive Before & After Site Comparison"
-              : "Comparativo Interativo: Antes e Depois da Obra"}
-          </h2>
-          <p className="text-umber text-base">
-            {locale === "en"
-              ? "Drag the vertical handle or click any numbered diagnostic pin to inspect how the raw structure was transformed."
-              : "Arraste o controle vertical ou clique nos pinos numerados para inspecionar cada detalhe da transformação."}
-          </p>
-        </div>
+      {/* Interactive Before & After Spatial Transformation Slider (Rendered only when matched pair exists) */}
+      {project.beforeImage && project.beforeImage !== project.afterImage && (
+        <section className="max-w-[1440px] mx-auto px-5 md:px-10 py-20 lg:py-28 border-b border-espresso/15">
+          <div className="mb-10 max-w-2xl space-y-2">
+            <h2 className="font-serif text-4xl sm:text-5xl font-light text-espresso">
+              {locale === "en"
+                ? "Interactive Before & After Site Comparison"
+                : "Comparativo Interativo: Antes e Depois da Obra"}
+            </h2>
+            <p className="text-umber text-base">
+              {locale === "en"
+                ? "Drag the vertical handle or click any numbered diagnostic pin to inspect how the raw structure was transformed."
+                : "Arraste o controle vertical ou clique nos pinos numerados para inspecionar cada detalhe da transformação."}
+            </p>
+          </div>
 
-        <BeforeAfterSlider
-          projectSlug={project.slug}
-          projectTitle={project.title}
-          location={project.location}
-          coordinates={project.coordinates}
-          beforeImage={project.beforeImage}
-          afterImage={project.afterImage}
-          beforeLabel={project.beforeLabel}
-          afterLabel={project.afterLabel}
-          curePins={project.curePins}
-          showCaseStudyLink={false}
-        />
-      </section>
+          <BeforeAfterSlider
+            projectSlug={project.slug}
+            projectTitle={project.title}
+            location={project.location}
+            coordinates={project.coordinates}
+            beforeImage={project.beforeImage}
+            afterImage={project.afterImage}
+            beforeLabel={project.beforeLabel}
+            afterLabel={project.afterLabel}
+            curePins={project.curePins}
+            showCaseStudyLink={false}
+          />
+        </section>
+      )}
 
       {/* Materiality & Specification Board */}
       <section className="bg-travertine border-b border-espresso/15 py-20">

@@ -549,7 +549,7 @@ export const PROJECTS_DATA: ProjectCaseStudy[] = [
     areaSqm: "410 m²",
     durationMonths: "8 Months",
     heroImage: "/images/residential_alphaville_1.png",
-    beforeImage: "/images/02_before_alphaville_raw_space.jpg",
+    beforeImage: "/images/residential_alphaville_1.png",
     afterImage: "/images/residential_alphaville_1.png",
     beforeLabel: {
       en: "BEFORE — Unarticulated White Drywall Box",

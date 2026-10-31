@@ -6,6 +6,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ConsultationConcierge from "@/components/ConsultationConcierge";
+import VipConciergePill from "@/components/VipConciergePill";
 import JsonLd from "@/components/JsonLd";
 
 const cormorant = Cormorant_Garamond({
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
     siteName: "Ramon Bennett Interiors",
     images: [
       {
-        url: "/images/01_hero_salvador_london_penthouse.jpg",
+        url: "/images/home_golden_living_room.png",
         width: 1600,
         height: 900,
         alt: "Ramon Bennett Interiors — London & Salvador Luxury Interior Architecture",
@@ -73,7 +74,7 @@ export const metadata: Metadata = {
       "Ramon Bennett Interiors | Luxury Interior Architecture — London & Salvador",
     description:
       "Every space tells a story. Ours begins by listening. Bespoke residential, hospitality, and architectural joinery.",
-    images: ["/images/01_hero_salvador_london_penthouse.jpg"],
+    images: ["/images/home_golden_living_room.png"],
   },
 };
 
@@ -95,6 +96,7 @@ export default function RootLayout({
             <main className="min-h-screen pt-20 lg:pt-28">{children}</main>
             <Footer />
             <ConsultationConcierge />
+            <VipConciergePill />
           </SmoothScroll>
         </StudioProvider>
       </body>

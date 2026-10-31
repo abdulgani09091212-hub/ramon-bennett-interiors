@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Check, ArrowUpRight, Ruler, Compass, ShieldCheck, Sparkles } from "lucide-react";
+import { Check, ArrowUpRight } from "lucide-react";
 import { useStudio } from "@/context/StudioContext";
 import { SERVICES_DATA, PROJECTS_DATA } from "@/data/studioData";
 import NeurodesignExplorer from "@/components/NeurodesignExplorer";
@@ -212,13 +212,9 @@ export default function ServicesPage() {
                     {idx === 1 && "Ramon Bennett & Márcia Ribeiro"}
                     {idx === 2 && "Márcia Ribeiro & Mariana Figueiredo"}
                   </span>
-                  {idx === 0 ? (
-                    <Compass className="w-4 h-4" />
-                  ) : idx === 1 ? (
-                    <Ruler className="w-4 h-4" />
-                  ) : (
-                    <ShieldCheck className="w-4 h-4" />
-                  )}
+                  <span className="text-[10px] tracking-widest text-[#8C6239] uppercase">
+                    {idx === 0 ? "01 · AUDIT" : idx === 1 ? "02 · FABRICATION" : "03 · DELIVERY"}
+                  </span>
                 </div>
               </div>
             ))}
