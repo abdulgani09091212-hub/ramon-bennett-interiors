@@ -64,7 +64,7 @@ export const STUDIO_CONFIG = {
     en: "Every space tells a story. Ours begins by listening.",
     pt: "Cada espaço conta uma história. A nossa começa pela escuta.",
   },
-  heroVideoUrl: "/videos/studio-reel.mp4",
+  heroVideoUrl: "/videos/hero_ambient_loop.mp4",
   calLink: process.env.NEXT_PUBLIC_CAL_LINK || "ramonbennett/private-consultation",
   instagramStudio: "https://www.instagram.com/ramonbennettinteriors/",
   instagramPersonal: "https://www.instagram.com/ramonbennettofficial/",

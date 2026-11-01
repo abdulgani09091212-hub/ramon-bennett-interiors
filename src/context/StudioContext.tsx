@@ -26,7 +26,7 @@ export function StudioProvider({ children }: { children: React.ReactNode }) {
   const [preselectedProject, setPreselectedProject] = useState("");
   const [projects, setProjects] = useState<ProjectCaseStudy[]>(PROJECTS_DATA);
   const [essays, setEssays] = useState<JournalEssay[]>(JOURNAL_ESSAYS);
-  const [heroVideoUrl, setHeroVideoUrlState] = useState<string>("/videos/alphaville_metamorphosis_720p.mp4");
+  const [heroVideoUrl, setHeroVideoUrlState] = useState<string>("/videos/hero_ambient_loop.mp4");
 
   useEffect(() => {
     try {
@@ -49,8 +49,8 @@ export function StudioProvider({ children }: { children: React.ReactNode }) {
         }
       }
       const savedVideo = localStorage.getItem("rbi_hero_video_url");
-      if (savedVideo !== null && savedVideo !== undefined) {
-        setHeroVideoUrlState(savedVideo);
+      if (savedVideo && savedVideo.trim().length > 0) {
+        setHeroVideoUrlState(savedVideo.trim());
       }
     } catch {
       // Safe fallback
