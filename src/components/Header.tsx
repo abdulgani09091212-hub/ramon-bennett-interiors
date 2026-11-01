@@ -81,12 +81,6 @@ export default function Header() {
             </div>
             <div className="flex items-center gap-6">
               <span>INTERIOR ARCHITECTURE · BESPOKE JOINERY · SPATIAL PSYCHOLOGY</span>
-              <Link
-                href="/admin"
-                className="text-umber hover:text-espresso transition-colors underline underline-offset-4"
-              >
-                {locale === "en" ? "Studio CMS" : "Painel Studio"}
-              </Link>
             </div>
           </div>
 
@@ -211,13 +205,6 @@ export default function Header() {
                     <ArrowUpRight className="w-5 h-5 text-bronze" />
                   </Link>
                 ))}
-                <Link
-                  href="/admin"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="font-mono text-xs uppercase tracking-[0.2em] text-bronze pt-2"
-                >
-                  {locale === "en" ? "Studio Visual CMS (/admin)" : "Painel Visual do Estúdio (/admin)"}
-                </Link>
               </nav>
             </div>
 

@@ -630,24 +630,39 @@ export default function HomePage() {
                   sizes="100vw"
                   className="object-cover object-center animate-micro-life"
                 />
-                <div className="absolute inset-0 bg-obsidian/60 flex flex-col items-center justify-center text-center p-6 space-y-4">
-                  <p className="font-serif text-3xl sm:text-4xl max-w-2xl font-light">
+                <div className="absolute inset-0 bg-obsidian/65 flex flex-col items-center justify-center text-center p-6 sm:p-10 space-y-5">
+                  <span className="font-mono text-xs uppercase tracking-[0.24em] text-bronze">
+                    {locale === "en" ? "ATELIER PHILOSOPHY FILM" : "FILME & FILOSOFIA DO ESTÚDIO"}
+                  </span>
+                  <p className="font-serif text-3xl sm:text-5xl max-w-2xl font-light leading-snug">
                     {locale === "en"
                       ? "“Every space tells a story. Ours begins by listening.”"
                       : "“Cada espaço conta uma história. A nossa começa pela escuta.”"}
                   </p>
-                  <p className="text-sm text-sandstone/85 max-w-xl font-light">
+                  <p className="text-sm sm:text-base text-sandstone/85 max-w-xl font-light leading-relaxed">
                     {locale === "en"
-                      ? "Direct video playback is currently serving our ambient loop. You can also configure a custom video URL anytime in the studio admin."
-                      : "A reprodução de vídeo está ativa. Você também pode alterar o link do vídeo pelo painel administrativo do estúdio."}
+                      ? "Ramon Bennett Interiors bridges 17 years of London spatial psychology with three decades of master bespoke joinery in Salvador. Every interior is sculpted as an enduring sanctuary for human connection."
+                      : "Ramon Bennett Interiors une 17 anos de psicologia espacial em Londres a três décadas de alta marcenaria sob medida em Salvador. Cada espaço é esculpido como um refúgio atemporal para a conexão humana."}
                   </p>
-                  <div className="pt-2">
-                    <Link
-                      href="/admin"
-                      onClick={() => setVideoModalOpen(false)}
-                      className="px-6 py-3 bg-limestone text-espresso hover:bg-oxblood hover:text-limestone font-mono text-xs uppercase tracking-widest transition-colors font-medium"
+                  <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setVideoModalOpen(false);
+                        openConcierge();
+                      }}
+                      className="px-6 py-3.5 bg-oxblood text-limestone hover:bg-espresso font-mono text-xs uppercase tracking-[0.18em] transition-colors font-medium inline-flex items-center gap-2"
                     >
-                      {locale === "en" ? "Studio Video Manager (/admin)" : "Gerenciador de Vídeo (/admin)"}
+                      <span>{locale === "en" ? "Commission an Atmosphere" : "Solicitar Consultoria"}</span>
+                      <ArrowUpRight className="w-4 h-4" />
+                    </button>
+                    <Link
+                      href="/studio"
+                      onClick={() => setVideoModalOpen(false)}
+                      className="px-6 py-3.5 border border-limestone/30 hover:border-limestone text-limestone font-mono text-xs uppercase tracking-[0.18em] transition-colors font-medium inline-flex items-center gap-2"
+                    >
+                      <span>{locale === "en" ? "Explore Family Heritage" : "Conhecer o Atelier"}</span>
+                      <ArrowUpRight className="w-4 h-4" />
                     </Link>
                   </div>
                 </div>

@@ -186,9 +186,13 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/admin" className="text-bronze hover:underline">
-                {locale === "en" ? "Studio Admin CMS" : "Painel Admin"}
-              </Link>
+              <button
+                type="button"
+                onClick={() => openConcierge()}
+                className="hover:text-limestone text-sandstone/80 transition-colors text-left font-sans"
+              >
+                {locale === "en" ? "Private Consultation" : "Consulta Privada"}
+              </button>
             </li>
           </ul>
         </div>
