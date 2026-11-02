@@ -20,8 +20,47 @@ import { STUDIO_CONFIG } from "@/data/studioData";
 export default function HomePage() {
   const { locale, openConcierge, projects, essays, heroVideoUrl } = useStudio();
   const [selectedTransformationIndex, setSelectedTransformationIndex] = useState(0);
+  const [activeHeroReelIndex, setActiveHeroReelIndex] = useState(0);
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
+
+  const heroReels = [
+    {
+      id: "alphaville",
+      code: "01 · ALPHAVILLE SALVADOR",
+      videoSrc: heroVideoUrl || "/videos/hero_ambient_loop.mp4",
+      poster: "/images/03_after_alphaville_transformed.jpg",
+      caption: {
+        en: "An International Perspective. A Family Tradition. A Deeply Personal Approach.",
+        pt: "Uma Perspectiva Internacional. Uma Tradição Familiar. Uma Abordagem Pessoal.",
+      },
+      colophon: "FLAGSHIP SALON · ALPHAVILLE I · SALVADOR BAHIA",
+    },
+    {
+      id: "kensington",
+      code: "02 · KENSINGTON LONDON",
+      videoSrc: "/videos/kensington_metamorphosis.mp4",
+      poster: "/images/08_after_kensington_london_sanctuary.jpg",
+      caption: {
+        en: "Restoring Grade II Victorian Proportions into a Smoked Oak & Travertine Sanctuary.",
+        pt: "Restaurando Proporções Vitorianas em Londres com Carvalho Defumado e Travertino.",
+      },
+      colophon: "TOWNHOUSE COMMISSION · SOUTH KENSINGTON · LONDON SW7",
+    },
+    {
+      id: "palacio",
+      code: "03 · RUA DO PALÁCIO",
+      videoSrc: "/videos/palacio_metamorphosis.mp4",
+      poster: "/images/05_rua_do_palacio_hospitality_lounge.jpg",
+      caption: {
+        en: "Monumental Heritage Arches & Warm Circadian Hospitality in Historic Salvador.",
+        pt: "Arcos Históricos Monumentais e Hospitalidade Circadiana no Centro Histórico.",
+      },
+      colophon: "HERITAGE HOSPITALITY · RUA DO PALÁCIO · SALVADOR",
+    },
+  ];
+
+  const activeHeroReel = heroReels[activeHeroReelIndex] || heroReels[0];
 
   const activeTransformation =
     projects[selectedTransformationIndex] || projects[0];
@@ -92,10 +131,11 @@ export default function HomePage() {
 
         {/* Full-Bleed Architectural Frame with Ramon's Real Flagship Golden Living Room */}
         <div className="relative aspect-[16/9] sm:aspect-[21/10] w-full overflow-hidden border border-espresso/20 bg-obsidian group">
-          {heroVideoUrl && !videoFailed ? (
+          {activeHeroReel.videoSrc && !videoFailed ? (
             <video
-              src={heroVideoUrl}
-              poster="/images/home_golden_living_room.png"
+              key={activeHeroReel.id}
+              src={activeHeroReel.videoSrc}
+              poster={activeHeroReel.poster}
               autoPlay
               muted
               loop
@@ -106,8 +146,8 @@ export default function HomePage() {
           ) : (
             <div className="relative w-full h-full overflow-hidden">
               <Image
-                src="/images/home_golden_living_room.png"
-                alt="Ramon Bennett Interiors — Golden Hour Brazilian Walnut Joinery & Restorative Spatial Architecture"
+                src={activeHeroReel.poster}
+                alt="Ramon Bennett Interiors — Restorative Spatial Architecture"
                 fill
                 sizes="100vw"
                 priority
@@ -116,16 +156,35 @@ export default function HomePage() {
             </div>
           )}
 
+          {/* Interactive Multi-Reel Switcher Tabs (Slider A) */}
+          <div className="absolute top-4 right-4 z-20 flex flex-wrap items-center gap-2">
+            {heroReels.map((reel, idx) => (
+              <button
+                key={reel.id}
+                type="button"
+                onClick={() => {
+                  setVideoFailed(false);
+                  setActiveHeroReelIndex(idx);
+                }}
+                className={`px-3 py-1.5 text-[10px] sm:text-xs font-mono uppercase tracking-[0.16em] backdrop-blur-md transition-all ${
+                  activeHeroReelIndex === idx
+                    ? "bg-oxblood text-limestone border border-bronze/50 font-medium shadow-lg"
+                    : "bg-obsidian/75 text-sandstone/85 border border-limestone/20 hover:border-bronze hover:text-limestone"
+                }`}
+              >
+                {reel.code}
+              </button>
+            ))}
+          </div>
+
           {/* Integrated Architectural Colophon Bar */}
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/95 via-obsidian/60 to-transparent p-5 sm:p-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-limestone">
             <div className="space-y-1">
               <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-sandstone/80 tabular-nums">
-                FLAGSHIP SALON · LONDON SW7 & SALVADOR BAHIA
+                {activeHeroReel.colophon}
               </p>
               <p className="font-serif text-2xl sm:text-3xl font-light">
-                {locale === "en"
-                  ? "An International Perspective. A Family Tradition. A Deeply Personal Approach."
-                  : "Uma Perspectiva Internacional. Uma Tradição Familiar. Uma Abordagem Pessoal."}
+                {activeHeroReel.caption[locale]}
               </p>
             </div>
 
@@ -612,10 +671,11 @@ export default function HomePage() {
               </button>
             </div>
 
-            {heroVideoUrl && !videoFailed ? (
+            {activeHeroReel.videoSrc && !videoFailed ? (
               <div className="aspect-video w-full bg-black overflow-hidden">
                 <video
-                  src={heroVideoUrl}
+                  key={activeHeroReel.id}
+                  src={activeHeroReel.videoSrc}
                   controls
                   autoPlay
                   className="w-full h-full object-cover"
