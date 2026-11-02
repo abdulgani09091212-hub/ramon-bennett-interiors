@@ -26,11 +26,6 @@ export default function CraftsmanshipZoomGallery() {
         {/* Header Section with Classical Architectural Proportions */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end border-b border-espresso/15 pb-10">
           <div className="lg:col-span-8 space-y-3">
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-bronze block">
-              {locale === "en"
-                ? "Atelier Provenance · Est. 1996"
-                : "Origem do Atelier · Fundado em 1996"}
-            </span>
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-espresso tracking-tight leading-[1.04]">
               {locale === "en"
                 ? "Three Decades of Master Joinery. One Family Roof."
@@ -149,7 +144,7 @@ export default function CraftsmanshipZoomGallery() {
               </p>
             </div>
 
-            <div className="border-l-2 border-oxblood pl-5 py-2">
+            <div className="pt-4 border-t border-espresso/15">
               <blockquote className="font-serif text-xl sm:text-2xl text-espresso italic font-light leading-snug">
                 {locale === "en"
                   ? "“An object may be beautiful, but its soul belongs to the hands that carved it and the family who inhabits it.”"

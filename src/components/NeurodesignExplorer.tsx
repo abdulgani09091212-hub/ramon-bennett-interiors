@@ -36,11 +36,6 @@ export default function NeurodesignExplorer() {
         {/* Editorial Narrative Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end border-b border-limestone/15 pb-10">
           <div className="lg:col-span-8 space-y-3">
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-sandstone/70 block">
-              {locale === "en"
-                ? "Spatial Psychology & The Nervous System"
-                : "Psicologia Espacial & O Sistema Nervoso"}
-            </span>
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-limestone tracking-tight leading-[1.04]">
               {locale === "en"
                 ? "Rooms That Lower Your Cortisol. By Architectural Design."

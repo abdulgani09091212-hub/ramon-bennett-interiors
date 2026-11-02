@@ -213,9 +213,6 @@ export default function HomePage() {
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-12">
           <div className="lg:col-span-7 space-y-3">
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-bronze block">
-              {locale === "en" ? "Diagnostic Metamorphosis" : "Metamorfose Diagnóstica"}
-            </span>
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.04]">
               {locale === "en"
                 ? "Spatial Transformations: Before & After the Cure"
@@ -266,9 +263,6 @@ export default function HomePage() {
       <section className="max-w-[1440px] mx-auto px-5 md:px-10 py-24 lg:py-36 border-b border-espresso/15">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 border-b border-espresso/15 pb-8">
           <div className="space-y-3 max-w-2xl">
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-bronze block">
-              {locale === "en" ? "Curated Portfolio" : "Portfólio Autoral"}
-            </span>
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.04]">
               {locale === "en"
                 ? "Selected Architectural Commissions"
@@ -498,9 +492,6 @@ export default function HomePage() {
           </div>
 
           <div className="lg:col-span-7 space-y-6">
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-bronze block">
-              {locale === "en" ? "Founder & Philosophy" : "Fundador & Filosofia"}
-            </span>
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-espresso tracking-tight leading-[1.04]">
               {locale === "en"
                 ? "“A room is not a static picture. It is the emotional vessel of your daily life.”"
@@ -554,9 +545,6 @@ export default function HomePage() {
       <section className="max-w-[1440px] mx-auto px-5 md:px-10 py-24 lg:py-36">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 border-b border-espresso/15 pb-8">
           <div className="space-y-2">
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-bronze block">
-              {locale === "en" ? "Architectural Monographs" : "Monografias Arquitetônicas"}
-            </span>
             <h2 className="font-serif text-4xl sm:text-5xl font-light text-espresso tracking-tight">
               {locale === "en"
                 ? "The Journal: Essays on Space, Craft & Neurodesign"
