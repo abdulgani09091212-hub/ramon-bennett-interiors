@@ -34,11 +34,11 @@ export default function BeforeAfterSlider({
   showCaseStudyLink = true,
 }: BeforeAfterSliderProps) {
   const { locale } = useStudio();
-  const [sliderPos, setSliderPos] = useState(50);
+  const [sliderPos, setSliderPos] = useState(78);
   const [isDragging, setIsDragging] = useState(false);
   const [activePin, setActivePin] = useState<CurePin | null>(curePins[0] || null);
   const [showPins, setShowPins] = useState(true);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const updateSliderFromClientX = useCallback((clientX: number) => {

@@ -15,6 +15,7 @@ import { useStudio } from "@/context/StudioContext";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import CraftsmanshipZoomGallery from "@/components/CraftsmanshipZoomGallery";
 import NeurodesignExplorer from "@/components/NeurodesignExplorer";
+import StudioDispatches from "@/components/StudioDispatches";
 import { STUDIO_CONFIG } from "@/data/studioData";
 
 export default function HomePage() {
@@ -540,6 +541,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* STUDIO DISPATCHES: AUTHENTIC CLIENT ASSETS & SOCIAL PROOF STREAM */}
+      <StudioDispatches />
 
       {/* 7. THE EDITORIAL JOURNAL (Lead Feature Monograph + Curated Reading Index) */}
       <section className="max-w-[1440px] mx-auto px-5 md:px-10 py-24 lg:py-36">

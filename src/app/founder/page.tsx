@@ -8,6 +8,7 @@ import { ArrowUpRight, Mic, BookOpen, Instagram } from "lucide-react";
 import { useStudio } from "@/context/StudioContext";
 import { STUDIO_CONFIG, JOURNAL_ESSAYS } from "@/data/studioData";
 import NeurodesignExplorer from "@/components/NeurodesignExplorer";
+import StudioDispatches from "@/components/StudioDispatches";
 
 const SPEAKING_TOPICS = [
   {
@@ -384,6 +385,9 @@ export default function FounderPage() {
           </div>
         </div>
       </section>
+
+      {/* STUDIO DISPATCHES: AUTHENTIC CLIENT ASSETS & SOCIAL PROOF */}
+      <StudioDispatches />
     </main>
   );
 }

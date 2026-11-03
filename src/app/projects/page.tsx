@@ -14,7 +14,7 @@ function PortfolioContent() {
   const initialCat = searchParams.get("category") || "All";
 
   const [category, setCategory] = useState<string>(initialCat);
-  const [viewMode, setViewMode] = useState<"grid" | "stack">("stack");
+  const [viewMode, setViewMode] = useState<"grid" | "stack">("grid");
 
   const categories = [
     "All",
