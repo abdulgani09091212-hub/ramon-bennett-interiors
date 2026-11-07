@@ -15,6 +15,7 @@ import { useStudio } from "@/context/StudioContext";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import CraftsmanshipZoomGallery from "@/components/CraftsmanshipZoomGallery";
 import NeurodesignExplorer from "@/components/NeurodesignExplorer";
+import StudioCommissionProtocol from "@/components/StudioCommissionProtocol";
 import StudioDispatches from "@/components/StudioDispatches";
 import { STUDIO_CONFIG } from "@/data/studioData";
 
@@ -475,7 +476,10 @@ export default function HomePage() {
       {/* 5. SPATIAL PSYCHOLOGY & NEURODESIGN (Atmospheric Grounding) */}
       <NeurodesignExplorer />
 
-      {/* 6. THE PRINCIPAL: RAMON BENNETT (Editorial Salon Byline & Spatial Philosophy) */}
+      {/* 6. THE STUDIO COMMISSION PROTOCOL (From Brief to Handover) */}
+      <StudioCommissionProtocol />
+
+      {/* 7. THE PRINCIPAL: RAMON BENNETT (Editorial Salon Byline & Spatial Philosophy) */}
       <section className="max-w-[1440px] mx-auto px-5 md:px-10 py-24 lg:py-36 border-b border-espresso/15">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-5">

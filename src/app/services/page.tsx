@@ -9,45 +9,7 @@ import { useStudio } from "@/context/StudioContext";
 import { SERVICES_DATA, PROJECTS_DATA } from "@/data/studioData";
 import NeurodesignExplorer from "@/components/NeurodesignExplorer";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
-
-const COMMISSION_STAGES = [
-  {
-    phase: "STAGE 01",
-    duration: { en: "Weeks 1–3", pt: "Semanas 1–3" },
-    title: {
-      en: "Psychological & Spatial Discovery",
-      pt: "Diagnóstico Psicológico & Espacial",
-    },
-    desc: {
-      en: "Led personally by Ramon Bennett in London, Salvador, or via private video consultation. We audit how you live, work, host, and decompress—identifying acoustic leaks, lighting fatigue, and relational bottlenecks before drawing a single line.",
-      pt: "Conduzido pessoalmente por Ramon Bennett em Londres, Salvador ou por videoconferência privada. Mapeamos sua rotina, estímulos sensoriais, acústica e dinâmica familiar antes do primeiro traço.",
-    },
-  },
-  {
-    phase: "STAGE 02",
-    duration: { en: "Weeks 4–8", pt: "Semanas 4–8" },
-    title: {
-      en: "Architectural Cure, Materiality & 1:1 Joinery Engineering",
-      pt: "Cura Arquitetônica, Materialidade & Engenharia de Marcenaria 1:1",
-    },
-    desc: {
-      en: "We present full architectural spatial plans, circadian lighting schedules (2200K–2700K), tactile stone/timber sample boxes, and Márcia Ribeiro's 1:1 technical joinery blueprints for complete sign-off.",
-      pt: "Apresentamos o projeto arquitetônico completo, luminotécnica circadiana, caixa de amostras físicas (pedras, madeiras e linhos) e os desenhos executivos 1:1 de marcenaria sob supervisão de Márcia Ribeiro.",
-    },
-  },
-  {
-    phase: "STAGE 03",
-    duration: { en: "Months 3–9+", pt: "Meses 3–9+" },
-    title: {
-      en: "Atelier Fabrication & Legal-Grade Turnkey Delivery",
-      pt: "Fabricação no Atelier & Entrega Turnkey com Governança",
-    },
-    desc: {
-      en: "While our Salvador workshop crafts your custom cabinetry and furniture, Mariana Figueiredo governs all contractor contracts, procurement schedules, and white-glove installation to the final styled artwork.",
-      pt: "Enquanto nossa oficina em Salvador fabrica a marcenaria autoral, Mariana Figueiredo governa contratos, fornecedores, cronograma executivo e instalação final até a produção completa.",
-    },
-  },
-];
+import StudioCommissionProtocol from "@/components/StudioCommissionProtocol";
 
 export default function ServicesPage() {
   const { locale, openConcierge } = useStudio();
@@ -170,57 +132,8 @@ export default function ServicesPage() {
         })}
       </section>
 
-      {/* The 3-Stage Zero-Homework Process */}
-      <section className="bg-[#161311] text-[#F6F3EC] py-24 md:py-32">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-3xl mb-16">
-            <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl leading-tight">
-              {locale === "en"
-                ? "The Three-Stage Commission Architecture"
-                : "A Arquitetura de Entrega em Três Etapas"}
-            </h2>
-            <p className="mt-4 text-[#D8CEBE] text-base md:text-lg font-light leading-relaxed">
-              {locale === "en"
-                ? "Designed for time-poor executives, international families, and hospitality founders who require absolute creative authority and zero contractor friction."
-                : "Desenhado para clientes exigentes que buscam excelência estética absoluta e tranquilidade contratual do primeiro estudo à entrega das chaves."}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {COMMISSION_STAGES.map((stage, idx) => (
-              <div
-                key={stage.phase}
-                className="p-8 md:p-10 bg-[#1F1B18] border border-[#F6F3EC]/10 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between font-mono text-xs text-[#C59B6D] mb-6">
-                    <span>{stage.phase}</span>
-                    <span className="px-2.5 py-1 bg-[#161311] border border-[#F6F3EC]/10">
-                      {stage.duration[locale]}
-                    </span>
-                  </div>
-                  <h3 className="font-serif text-2xl sm:text-3xl text-[#F6F3EC] leading-snug">
-                    {stage.title[locale]}
-                  </h3>
-                  <p className="mt-4 text-sm text-[#D8CEBE]/85 leading-relaxed">
-                    {stage.desc[locale]}
-                  </p>
-                </div>
-                <div className="mt-8 pt-4 border-t border-[#F6F3EC]/10 flex items-center justify-between font-mono text-xs text-[#C59B6D]">
-                  <span>
-                    {idx === 0 && "Ramon Bennett (London / Zoom)"}
-                    {idx === 1 && "Ramon Bennett & Márcia Ribeiro"}
-                    {idx === 2 && "Márcia Ribeiro & Mariana Figueiredo"}
-                  </span>
-                  <span className="text-[10px] tracking-widest text-[#8C6239] uppercase">
-                    {idx === 0 ? "01 · AUDIT" : idx === 1 ? "02 · FABRICATION" : "03 · DELIVERY"}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* The 4-Stage Zero-Homework Commission Protocol */}
+      <StudioCommissionProtocol />
 
       {/* Interactive London Transformation Proof */}
       <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-24 md:py-32">

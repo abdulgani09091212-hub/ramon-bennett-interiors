@@ -900,6 +900,90 @@ export const SERVICES_DATA = [
   },
 ];
 
+export interface CommissionProtocolPhase {
+  phase: string;
+  lead: { en: string; pt: string };
+  duration: { en: string; pt: string };
+  title: { en: string; pt: string };
+  desc: { en: string; pt: string };
+  deliverables: { en: string; pt: string }[];
+}
+
+export const STUDIO_COMMISSION_PROTOCOL: CommissionProtocolPhase[] = [
+  {
+    phase: "PHASE 01",
+    lead: { en: "Ramon Bennett · London SW7", pt: "Ramon Bennett · Londres SW7" },
+    duration: { en: "Weeks 1–3", pt: "Semanas 1–3" },
+    title: {
+      en: "Spatial Psychology & Lifestyle Diagnostic",
+      pt: "Diagnóstico Psicológico & Espacial",
+    },
+    desc: {
+      en: "Conducted personally by Ramon Bennett in London, Salvador, or via private video consultation. We audit how you live, decompress, and host—identifying acoustic leaks, lighting fatigue, and relational bottlenecks before drawing a single architectural line.",
+      pt: "Conduzido pessoalmente por Ramon Bennett em Londres, Salvador ou videoconferência privada. Mapeamos rotinas diárias, estímulos sensoriais, acústica e convívio familiar antes do primeiro traço.",
+    },
+    deliverables: [
+      { en: "Confidential Lifestyle & Sensory Profile", pt: "Dossiê Sensorial e de Estilo de Vida" },
+      { en: "Circadian Lighting & Acoustic Requirement Map", pt: "Mapeamento Luminotécnico e Acústico" },
+      { en: "Preliminary Spatial Flow & Zoning Sketch", pt: "Estudo Preliminar de Fluxos e Setorização" },
+    ],
+  },
+  {
+    phase: "PHASE 02",
+    lead: { en: "Márcia Ribeiro · Salvador Atelier", pt: "Márcia Ribeiro · Salvador Atelier" },
+    duration: { en: "Weeks 4–8", pt: "Semanas 4–8" },
+    title: {
+      en: "1:1 Full-Scale Joinery Prototyping & Materiality",
+      pt: "Engenharia de Marcenaria 1:1 & Materialidade",
+    },
+    desc: {
+      en: "We present complete 2D CAD architectural plans, circadian luminaire specifications, tactile stone/timber sample boxes, and Márcia Ribeiro's 1:1 technical joinery blueprints for millimetric sign-off.",
+      pt: "Apresentamos plantas arquitetônicas completas, especificação luminotécnica, caixa física com amostras táteis e desenhos executivos 1:1 sob supervisão técnica de Márcia Ribeiro.",
+    },
+    deliverables: [
+      { en: "1:1 Full-Scale Joinery Shop Drawings", pt: "Desenhos Executivos de Marcenaria em Escala 1:1" },
+      { en: "Tactile Casket (Freijó, Walnut, Calacatta Viola)", pt: "Mostruário Tátil (Freijó, Nogueira, Mármores)" },
+      { en: "Photorealistic 3D Spatial Visualisation", pt: "Visualização Espacial Fotorrealista" },
+    ],
+  },
+  {
+    phase: "PHASE 03",
+    lead: { en: "Mariana Figueiredo · Legal Governance", pt: "Mariana Figueiredo · Governança Jurídica" },
+    duration: { en: "Months 3–6", pt: "Meses 3–6" },
+    title: {
+      en: "Legal Turnkey Governance & Atelier Fabrication",
+      pt: "Governança Jurídica Turnkey & Fabricação",
+    },
+    desc: {
+      en: "While our Salvador workshop crafts your bespoke cabinetry, former lawyer Mariana Figueiredo governs all supplier contracts, contractor procurement milestones, and strict budget accountability with zero client homework.",
+      pt: "Enquanto a oficina própria fabrica os painéis e móveis autorais, Mariana Figueiredo comanda contratos, fornecedores e cronogramas financeiros com total blindagem para o cliente.",
+    },
+    deliverables: [
+      { en: "Fixed-Scope Turnkey Legal Agreement", pt: "Contrato Executivo Turnkey com Escopo Fechado" },
+      { en: "Milestone-Gated Contractor Governance", pt: "Governança de Cronograma por Marcos Críticos" },
+      { en: "Live Bi-Weekly Photo & Milestone Dispatch", pt: "Relatórios Quinzenais de Avanço de Obra" },
+    ],
+  },
+  {
+    phase: "PHASE 04",
+    lead: { en: "Unified Studio Team · London & Salvador", pt: "Equipe Unificada · Londres & Salvador" },
+    duration: { en: "Handover Week", pt: "Semana de Entrega" },
+    title: {
+      en: "White-Glove Installation & Sensory Handover",
+      pt: "Instalação White-Glove & Entrega das Chaves",
+    },
+    desc: {
+      en: "Our specialized master joinery installation team executes seamless fitting on site, calibrates 2200K–2700K evening lighting scenes, verifies acoustic absorption, and hands over a turn-key sanctuary ready to be inhabited.",
+      pt: "Nossa equipe própria de marceneiros realiza a montagem final, calibra as cenas luminotécnicas noturnas, testa o amortecimento acústico e entrega a residência 100% pronta para morar.",
+    },
+    deliverables: [
+      { en: "Turnkey Key Handover & Styling Setup", pt: "Entrega das Chaves com Produção Completa" },
+      { en: "Acoustic & Circadian Verification Test", pt: "Verificação Acústica e Luminotécnica Final" },
+      { en: "Atelier Provenance Certificate & Care Manual", pt: "Certificado de Autenticidade e Manual de Cuidados" },
+    ],
+  },
+];
+
 export const JOURNAL_ESSAYS: JournalEssay[] = [
   {
     slug: "neurodesign-adaptive-luxury-sanctuaries",
