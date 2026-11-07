@@ -70,6 +70,7 @@ export const STUDIO_CONFIG = {
   instagramPersonal: "https://www.instagram.com/ramonbennettofficial/",
   whatsappLondon: "+442079460921",
   whatsappSalvador: "+5571999824100",
+  whatsappConcierge: "+5571999824100",
   emailLondon: "london@ramonbennettinteriors.com",
   emailSalvador: "salvador@ramonbennettinteriors.com",
   offices: [
@@ -549,7 +550,7 @@ export const PROJECTS_DATA: ProjectCaseStudy[] = [
     areaSqm: "410 m²",
     durationMonths: "8 Months",
     heroImage: "/images/residential_alphaville_1.png",
-    beforeImage: "/images/residential_alphaville_1.png",
+    beforeImage: "/images/09_before_alphaville_ii_raw.jpg",
     afterImage: "/images/residential_alphaville_1.png",
     beforeLabel: {
       en: "BEFORE — Unarticulated White Drywall Box",
@@ -793,7 +794,7 @@ export const NEURODESIGN_ARCHETYPES = [
     kelvinTemp: "2400K — Warm Candlelight Spectrum",
     acousticRating: "NRC 0.75 (Fluted Timber + Heavy Bouclé & Belgian Linen)",
     recommendedProjectSlug: "kensington-townhouse",
-    previewImage: "/images/08_after_kensington_london_sanctuary.jpg",
+    previewImage: "/images/10_neurodesign_master_suite_2400k.jpg",
     palette: [
       { name: "Warm Limestone Plaster", hex: "#EAE3D5" },
       { name: "Smoked Crown Walnut", hex: "#4A3222" },
@@ -815,7 +816,7 @@ export const NEURODESIGN_ARCHETYPES = [
     kelvinTemp: "2700K — Golden Hour Architectural Wash",
     acousticRating: "NRC 0.65 (Slatted Freijó Ceiling & Wall Baffling)",
     recommendedProjectSlug: "alphaville-i",
-    previewImage: "/images/03_after_alphaville_transformed.jpg",
+    previewImage: "/images/home_courtyard_pool.jpg",
     palette: [
       { name: "Honed Bahian Travertine", hex: "#DFD5C3" },
       { name: "Natural Brazilian Freijó", hex: "#8B5A36" },
@@ -913,7 +914,7 @@ export const JOURNAL_ESSAYS: JournalEssay[] = [
     category: { en: "Neurodesign & Spatial Psychology", pt: "Neurodesign & Psicologia Espacial" },
     date: "October 2026",
     readTime: "6 Min Read",
-    coverImage: "/images/08_after_kensington_london_sanctuary.jpg",
+    coverImage: "/images/11_journal_neurodesign_essay_cover.jpg",
     excerpt: {
       en: "For seventeen years in London, my work in human sciences and psychotherapy taught me that people rarely suffer in a vacuum—they suffer inside rooms that overstimulate, isolate, or ignore their emotional rhythms.",
       pt: "Durante dezessete anos em Londres, minha atuação nas ciências humanas e na psicoterapia me ensinou que as pessoas não vivem no vazio — elas habitam espaços que podem acolher ou sobrecarregar suas emoções.",

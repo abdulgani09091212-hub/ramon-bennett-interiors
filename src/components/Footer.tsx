@@ -35,8 +35,8 @@ export default function Footer() {
             >
               <span>
                 {locale === "en"
-                  ? "Book Private Consultation (Cal.com)"
-                  : "Agendar Consulta Privada (Cal.com)"}
+                  ? "Schedule Private Consultation"
+                  : "Agendar Consulta Privada"}
               </span>
               <ArrowUpRight className="w-4 h-4" />
             </button>
@@ -89,24 +89,41 @@ export default function Footer() {
               ? "An international perspective, a 30-year family tradition in bespoke Bahian joinery, and a deeply personal approach to interior architecture informed by human psychology."
               : "Uma perspectiva internacional, 30 anos de tradição familiar em alta marcenaria baiana e uma abordagem profundamente pessoal à arquitetura de interiores."}
           </p>
-          <div className="flex flex-col space-y-2 pt-2 text-xs font-mono tracking-[0.12em]">
+          <div className="flex flex-col gap-2 pt-3">
             <a
               href={STUDIO_CONFIG.instagramStudio}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sandstone hover:text-bronze transition-colors"
+              className="inline-flex items-center justify-between p-3 bg-limestone/5 hover:bg-limestone/10 border border-limestone/15 hover:border-bronze transition-all text-xs font-mono tracking-wider group"
             >
-              <Instagram className="w-3.5 h-3.5 text-bronze" />
-              <span>@ramonbennettinteriors (Studio Portfolio)</span>
+              <div className="flex items-center gap-2.5 text-limestone">
+                <Instagram className="w-4 h-4 text-bronze group-hover:scale-110 transition-transform" />
+                <div className="text-left">
+                  <div className="font-medium text-[11px]">@ramonbennettinteriors</div>
+                  <div className="text-[9.5px] uppercase text-sandstone/60 tracking-widest">
+                    {locale === "en" ? "Studio Portfolio & Atelier" : "Portfólio & Atelier"}
+                  </div>
+                </div>
+              </div>
+              <ArrowUpRight className="w-3.5 h-3.5 text-sandstone/60 group-hover:text-limestone transition-colors" />
             </a>
+
             <a
               href={STUDIO_CONFIG.instagramPersonal}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sandstone hover:text-bronze transition-colors"
+              className="inline-flex items-center justify-between p-3 bg-limestone/5 hover:bg-limestone/10 border border-limestone/15 hover:border-bronze transition-all text-xs font-mono tracking-wider group"
             >
-              <Instagram className="w-3.5 h-3.5 text-bronze" />
-              <span>@ramonbennettofficial (Founder, Writing & Speaking)</span>
+              <div className="flex items-center gap-2.5 text-limestone">
+                <Instagram className="w-4 h-4 text-bronze group-hover:scale-110 transition-transform" />
+                <div className="text-left">
+                  <div className="font-medium text-[11px]">@ramonbennettofficial</div>
+                  <div className="text-[9.5px] uppercase text-sandstone/60 tracking-widest">
+                    {locale === "en" ? "Founder · Writing & Lectures" : "Fundador · Escrita & Palestras"}
+                  </div>
+                </div>
+              </div>
+              <ArrowUpRight className="w-3.5 h-3.5 text-sandstone/60 group-hover:text-limestone transition-colors" />
             </a>
           </div>
         </div>

@@ -30,7 +30,7 @@ export default function HomePage() {
       id: "alphaville",
       code: "01 · ALPHAVILLE SALVADOR",
       videoSrc: heroVideoUrl || "/videos/hero_ambient_loop.mp4",
-      poster: "/images/03_after_alphaville_transformed.jpg",
+      poster: "/images/01_hero_salvador_london_penthouse.jpg",
       caption: {
         en: "An International Perspective. A Family Tradition. A Deeply Personal Approach.",
         pt: "Uma Perspectiva Internacional. Uma Tradição Familiar. Uma Abordagem Pessoal.",
@@ -228,7 +228,7 @@ export default function HomePage() {
             </p>
             {/* Commission Switcher Tabs */}
             <div className="flex flex-wrap gap-2 pt-1">
-              {projects.slice(0, 3).map((proj, idx) => (
+              {projects.slice(0, 4).map((proj, idx) => (
                 <button
                   key={proj.slug}
                   type="button"
@@ -287,17 +287,18 @@ export default function HomePage() {
 
         {/* Asymmetric Exhibition Flow (No 2x2 Identical Cards) */}
         <div className="space-y-20 lg:space-y-28">
-          {/* COMMISSION 01: Alphaville I — Panoramic Monumental Feature */}
+          {/* COMMISSION 01: Alphaville I — Conversation Salon Feature (Zero Duplication with Section 2) */}
           <article className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
             <div className="lg:col-span-8">
               <Link
                 href={`/projects/${projects[0].slug}`}
-                className="block relative aspect-[16/10] w-full overflow-hidden bg-obsidian border border-espresso/15 group"
+                className="block relative aspect-[16/10] w-full overflow-hidden bg-travertine border border-espresso/15 group"
               >
                 <Image
-                  src={projects[0].afterImage}
-                  alt={projects[0].title}
+                  src="/images/residential_alphaville_2.png"
+                  alt={`${projects[0].title} — Intimate Conversation Salon with Bespoke Terracotta Daybed`}
                   fill
+                  loading="eager"
                   sizes="(max-width: 1024px) 100vw, 66vw"
                   className="object-cover object-center editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105"
                 />
@@ -325,7 +326,7 @@ export default function HomePage() {
                 {projects[0].subtitle[locale]}
               </p>
               <p className="text-xs font-mono uppercase tracking-widest text-bronze pt-2">
-                Honed Roman Travertine · Fluted Freijó Joinery · Aged Bronze
+                Curved Terracotta Velvet · Brazilian Hardwood · Honed Travertine
               </p>
             </div>
           </article>
@@ -336,12 +337,13 @@ export default function HomePage() {
             <article className="lg:col-span-6 space-y-5">
               <Link
                 href={`/projects/${projects[1].slug}`}
-                className="block relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden bg-obsidian border border-espresso/15 group"
+                className="block relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden bg-travertine border border-espresso/15 group"
               >
                 <Image
                   src={projects[1].afterImage}
                   alt={projects[1].title}
                   fill
+                  loading="eager"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-center editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105"
                 />
@@ -377,12 +379,13 @@ export default function HomePage() {
             <article className="lg:col-span-6 space-y-5">
               <Link
                 href={`/projects/${projects[2].slug}`}
-                className="block relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden bg-obsidian border border-espresso/15 group"
+                className="block relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden bg-travertine border border-espresso/15 group"
               >
                 <Image
                   src={projects[2].afterImage}
                   alt={projects[2].title}
                   fill
+                  loading="eager"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-center editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105"
                 />
@@ -447,12 +450,13 @@ export default function HomePage() {
             <div className="lg:col-span-7 lg:order-2 order-1">
               <Link
                 href={`/projects/${projects[3].slug}`}
-                className="block relative aspect-[16/10] w-full overflow-hidden bg-obsidian border border-espresso/15 group"
+                className="block relative aspect-[16/10] w-full overflow-hidden bg-travertine border border-espresso/15 group"
               >
                 <Image
                   src="/images/residential_alphaville_1.png"
                   alt="Alphaville II Collector's Salon with custom boiserie and classical bust"
                   fill
+                  loading="eager"
                   sizes="(max-width: 1024px) 100vw, 58vw"
                   className="object-cover object-center editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105"
                 />
@@ -570,12 +574,13 @@ export default function HomePage() {
           <article className="lg:col-span-7 space-y-6">
             <Link
               href={`/journal/${essays[0].slug}`}
-              className="block relative aspect-[16/10] w-full overflow-hidden bg-obsidian border border-espresso/15 group"
+              className="block relative aspect-[16/10] w-full overflow-hidden bg-travertine border border-espresso/15 group"
             >
               <Image
                 src={essays[0].coverImage}
                 alt={essays[0].title[locale]}
                 fill
+                loading="eager"
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-cover object-center editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105"
               />
@@ -636,6 +641,87 @@ export default function HomePage() {
                 </Link>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. GATE 5 CRO ARCHITECTURE: FRICTIONLESS COMMISSION & DISCOVERY CALL GATEWAY */}
+      <section className="bg-travertine/75 border-t border-espresso/15 py-20 lg:py-28">
+        <div className="max-w-[1440px] mx-auto px-5 md:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div className="lg:col-span-7 space-y-4">
+              <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-bronze block">
+                {locale === "en"
+                  ? "PRIVATE COMMISSIONS · LONDON SW7 & SALVADOR BAHIA"
+                  : "COMISSÕES PRIVADAS · LONDRES SW7 & SALVADOR BAHIA"}
+              </span>
+              <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-espresso tracking-tight leading-[1.04]">
+                {locale === "en"
+                  ? "Begin a Conversation About Your Space."
+                  : "Inicie uma Conversa Sobre o Seu Espaço."}
+              </h2>
+              <p className="text-umber text-base sm:text-lg leading-relaxed font-light max-w-2xl">
+                {locale === "en"
+                  ? "Whether commissioning a turnkey residential sanctuary in London, bespoke architectural joinery in Brazil, or an international hospitality space, every project begins with a private discovery session with Ramon Bennett."
+                  : "Seja para uma residência turnkey em Londres, marcenaria arquitetônica sob medida na Bahia ou um projeto internacional de hospitalidade, toda jornada começa pela escuta direta com Ramon Bennett."}
+              </p>
+            </div>
+
+            <div className="lg:col-span-5 space-y-4 bg-limestone p-6 sm:p-8 border border-espresso/15 shadow-sm">
+              <div className="flex items-center justify-between border-b border-espresso/10 pb-3">
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-bronze font-semibold">
+                  {locale === "en" ? "DIRECT CONCIERGE ACCESS" : "ATENDIMENTO DIRETO"}
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-umber">
+                  {locale === "en" ? "RESPONSE < 24 HOURS" : "RESPOSTA EM 24H"}
+                </span>
+              </div>
+
+              <div className="space-y-3 pt-1">
+                <button
+                  type="button"
+                  onClick={() => openConcierge()}
+                  className="w-full py-4 px-5 bg-oxblood hover:bg-espresso text-limestone font-mono text-xs uppercase tracking-[0.2em] transition-colors flex items-center justify-between font-medium"
+                >
+                  <span>
+                    {locale === "en"
+                      ? "1. Submit Private Project Brief"
+                      : "1. Enviar Briefing de Projeto"}
+                  </span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </button>
+
+                <Link
+                  href="/contact"
+                  className="w-full py-4 px-5 bg-travertine/70 hover:bg-espresso hover:text-limestone text-espresso border border-espresso/20 font-mono text-xs uppercase tracking-[0.18em] transition-colors flex items-center justify-between"
+                >
+                  <span>
+                    {locale === "en"
+                      ? "2. Schedule 30-Min Discovery Call"
+                      : "2. Agendar Reunião de Diagnóstico"}
+                  </span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
+
+                <a
+                  href={`https://wa.me/${(locale === "en" ? STUDIO_CONFIG.whatsappLondon : STUDIO_CONFIG.whatsappSalvador).replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
+                    locale === "en"
+                      ? "Hello Ramon Bennett Interiors, I would like to inquire about a private architectural commission."
+                      : "Olá Ramon Bennett Interiors, gostaria de solicitar uma consulta sobre projeto de arquitetura de interiores."
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3.5 px-5 border border-espresso/15 hover:border-bronze text-umber hover:text-espresso font-mono text-[11px] uppercase tracking-[0.16em] transition-colors flex items-center justify-between"
+                >
+                  <span>
+                    {locale === "en"
+                      ? "3. Direct WhatsApp Studio Line"
+                      : "3. Linha Direta via WhatsApp"}
+                  </span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-bronze" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

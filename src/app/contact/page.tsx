@@ -207,7 +207,7 @@ export default function ContactPage() {
                     : "border-transparent text-[#524942] hover:text-[#181412]"
                 }`}
               >
-                01. {locale === "en" ? "Submit Project Brief (Brevo CRM)" : "Enviar Briefing de Projeto"}
+                01. {locale === "en" ? "Submit Project Brief" : "Enviar Dossiê de Projeto"}
               </button>
               <button
                 type="button"
@@ -219,7 +219,7 @@ export default function ContactPage() {
                 }`}
               >
                 <Calendar className="w-3.5 h-3.5" />
-                02. {locale === "en" ? "Live Calendar (Cal.com)" : "Agendar Horário (Cal.com)"}
+                02. {locale === "en" ? "Live Calendar Scheduler" : "Agendamento ao Vivo"}
               </button>
             </div>
 
@@ -228,13 +228,9 @@ export default function ContactPage() {
                 <div className="py-16 text-center space-y-6" role="status" aria-live="polite">
                   <CheckCircle2 className="w-14 h-14 text-[#8C6239] mx-auto" />
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F6F3EC] border border-[#8C6239]/40 font-mono text-[11px] uppercase tracking-widest text-[#8C6239]">
-                    {syncMode === "remote"
-                      ? locale === "en"
-                        ? "CONFIRMED: BREVO CRM + LOCAL STUDIO DOSSIER"
-                        : "CONFIRMADO: BREVO CRM + DOSSIÊ LOCAL"
-                      : locale === "en"
-                      ? "SAVED TO STUDIO DOSSIER • READY FOR WHATSAPP / CAL.COM"
-                      : "REGISTRADO NO DOSSIÊ DO ESTÚDIO • PRONTO PARA AGENDA"}
+                    {locale === "en"
+                      ? "CONFIRMED: TRANSMITTED TO PRINCIPAL ARCHITECT"
+                      : "CONFIRMADO: TRANSMITIDO AO ARQUITETO PRINCIPAL"}
                   </div>
                   <h3 className="font-serif text-3xl text-[#181412]">
                     {locale === "en"
@@ -419,11 +415,11 @@ export default function ContactPage() {
                 <div className="p-4 bg-[#F6F3EC] border border-[#181412]/10 flex items-center justify-between flex-wrap gap-4">
                   <div>
                     <div className="font-mono text-xs uppercase tracking-wider text-[#8C6239]">
-                      CAL.COM PRIVATE SCHEDULER
+                      PRIVATE DISCOVERY SCHEDULER · LONDON & SALVADOR
                     </div>
                     <p className="text-xs text-[#524942] mt-0.5">
                       {locale === "en"
-                        ? "Select a 30-minute Discovery Call with Ramon Bennett (London GMT/BST or Bahia BRT automatically detected)."
+                        ? "Select a 30-minute Discovery Session with Ramon Bennett (London GMT or Bahia BRT automatically detected)."
                         : "Selecione um horário de 30 minutos com Ramon Bennett (fuso horário de Londres ou Brasília detectado automaticamente)."}
                     </p>
                   </div>
@@ -431,9 +427,9 @@ export default function ContactPage() {
                     href={`https://cal.com/${STUDIO_CONFIG.calLink}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono text-xs uppercase tracking-widest text-[#181412] underline"
+                    className="font-mono text-xs uppercase tracking-widest text-[#181412] hover:text-[#8C6239] transition-colors underline"
                   >
-                    {locale === "en" ? "Open Full Window ↗" : "Abrir em Nova Guia ↗"}
+                    {locale === "en" ? "Schedule in New Tab ↗" : "Abrir em Nova Guia ↗"}
                   </a>
                 </div>
                 <div className="w-full h-[540px] bg-[#F6F3EC] border border-[#181412]/15 overflow-hidden">

@@ -4,7 +4,7 @@ import React, { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { MoveHorizontal, X, ArrowUpRight, SlidersHorizontal, Eye, EyeOff } from "lucide-react";
+import { ArrowUpRight, Eye, EyeOff } from "lucide-react";
 import { CurePin } from "@/data/studioData";
 import { useStudio } from "@/context/StudioContext";
 
@@ -33,13 +33,15 @@ export default function BeforeAfterSlider({
   curePins,
   showCaseStudyLink = true,
 }: BeforeAfterSliderProps) {
-  const { locale } = useStudio();
-  const [sliderPos, setSliderPos] = useState(78);
+  const { locale, openConcierge } = useStudio();
+  // Default to 75% resolved so user immediately admires the transformation
+  const [sliderPos, setSliderPos] = useState(75);
   const [isDragging, setIsDragging] = useState(false);
-  const [activePin, setActivePin] = useState<CurePin | null>(curePins[0] || null);
+  const [activePinIndex, setActivePinIndex] = useState(0);
   const [showPins, setShowPins] = useState(true);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const activePin = curePins && curePins.length > 0 ? curePins[activePinIndex] || curePins[0] : null;
 
   const updateSliderFromClientX = useCallback((clientX: number) => {
     if (!containerRef.current) return;
@@ -85,13 +87,9 @@ export default function BeforeAfterSlider({
     }
   };
 
-  const activePinIndex = activePin
-    ? curePins.findIndex((p) => p.id === activePin.id)
-    : -1;
-
   return (
-    <div className="space-y-4">
-      {/* 1. TOP CONTROL BAR: ARCHITECTURAL COORDINATES & VIEW MODES */}
+    <div className="space-y-6">
+      {/* 1. TOP ARCHITECTURAL CONTROL BAR */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-espresso/15 pb-4">
         <div className="flex flex-wrap items-center gap-3 text-xs font-mono uppercase tracking-[0.18em] text-umber tabular-nums">
           <span className="text-espresso font-medium">{projectTitle}</span>
@@ -101,26 +99,26 @@ export default function BeforeAfterSlider({
           <span className="hidden sm:inline text-sandstone/90">{coordinates}</span>
         </div>
 
-        {/* Preset Triggers & Pin Toggle */}
+        {/* Preset States & Pin Toggle */}
         <div className="flex flex-wrap items-center gap-2">
-          <div className="inline-flex items-center border border-espresso/20 bg-travertine/40 p-0.5">
+          <div className="inline-flex items-center border border-espresso/20 bg-travertine/60 p-0.5 shadow-sm">
             <button
               type="button"
-              onClick={() => setSliderPos(95)}
+              onClick={() => setSliderPos(98)}
               className={`px-3 py-1 text-[11px] font-mono uppercase tracking-[0.14em] transition-colors ${
-                sliderPos > 75
-                  ? "bg-espresso text-limestone"
+                sliderPos > 85
+                  ? "bg-espresso text-limestone font-medium shadow-sm"
                   : "text-espresso/70 hover:text-espresso"
               }`}
             >
-              {locale === "en" ? "Raw Site" : "Estado Bruto"}
+              {locale === "en" ? "Raw State" : "Estado Bruto"}
             </button>
             <button
               type="button"
               onClick={() => setSliderPos(50)}
               className={`px-3 py-1 text-[11px] font-mono uppercase tracking-[0.14em] transition-colors ${
-                sliderPos >= 25 && sliderPos <= 75
-                  ? "bg-espresso text-limestone"
+                sliderPos >= 30 && sliderPos <= 85
+                  ? "bg-espresso text-limestone font-medium shadow-sm"
                   : "text-espresso/70 hover:text-espresso"
               }`}
             >
@@ -128,10 +126,10 @@ export default function BeforeAfterSlider({
             </button>
             <button
               type="button"
-              onClick={() => setSliderPos(5)}
+              onClick={() => setSliderPos(2)}
               className={`px-3 py-1 text-[11px] font-mono uppercase tracking-[0.14em] transition-colors ${
-                sliderPos < 25
-                  ? "bg-espresso text-limestone"
+                sliderPos < 30
+                  ? "bg-espresso text-limestone font-medium shadow-sm"
                   : "text-espresso/70 hover:text-espresso"
               }`}
             >
@@ -142,11 +140,8 @@ export default function BeforeAfterSlider({
           {curePins.length > 0 && (
             <button
               type="button"
-              onClick={() => {
-                setShowPins(!showPins);
-                if (!showPins) setIsDrawerOpen(true);
-              }}
-              className="inline-flex items-center gap-1.5 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.14em] border border-espresso/20 bg-travertine/40 hover:border-bronze text-espresso transition-colors"
+              onClick={() => setShowPins(!showPins)}
+              className="inline-flex items-center gap-1.5 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.14em] border border-espresso/20 bg-travertine/60 hover:border-bronze text-espresso transition-colors shadow-sm"
             >
               {showPins ? (
                 <>
@@ -168,7 +163,7 @@ export default function BeforeAfterSlider({
         </div>
       </div>
 
-      {/* 2. FULL-WIDTH HEROIC COMPARISON STAGE */}
+      {/* 2. UNOBSTRUCTED HIGH-RESOLUTION COMPARISON STAGE */}
       <div className="relative w-full">
         <div
           ref={containerRef}
@@ -184,7 +179,7 @@ export default function BeforeAfterSlider({
           aria-valuemax={100}
           aria-valuenow={Math.round(sliderPos)}
           tabIndex={0}
-          className="relative aspect-[16/10] sm:aspect-[21/10] w-full overflow-hidden bg-obsidian select-none touch-pan-y cursor-ew-resize border border-espresso/20 shadow-md group"
+          className="relative aspect-[16/10] sm:aspect-[21/10] w-full overflow-hidden bg-travertine select-none touch-pan-y cursor-ew-resize border border-espresso/20 shadow-xl group"
         >
           {/* Base Layer: AFTER Image (Completed Sanctuary) */}
           <Image
@@ -193,6 +188,7 @@ export default function BeforeAfterSlider({
             fill
             sizes="100vw"
             priority
+            loading="eager"
             className="object-cover object-center editorial-grade pointer-events-none"
           />
 
@@ -209,151 +205,165 @@ export default function BeforeAfterSlider({
               fill
               sizes="100vw"
               priority
+              loading="eager"
               className="object-cover object-center pointer-events-none"
             />
             {/* Corner Badge: Raw State */}
-            <div className="absolute top-4 left-4 bg-obsidian/85 backdrop-blur-md text-limestone px-3.5 py-1.5 text-[10px] font-mono uppercase tracking-[0.2em] border border-limestone/20 shadow-md">
+            <div className="absolute top-4 left-4 bg-obsidian/90 backdrop-blur-md text-limestone px-3.5 py-1.5 text-[10px] font-mono uppercase tracking-[0.2em] border border-limestone/20 shadow-lg">
               {beforeLabel[locale]}
             </div>
           </div>
 
           {/* Corner Badge: Resolved State */}
-          <div className="absolute top-4 right-4 bg-limestone/90 backdrop-blur-md text-espresso px-3.5 py-1.5 text-[10px] font-mono uppercase tracking-[0.2em] border border-espresso/20 pointer-events-none shadow-md">
+          <div className="absolute top-4 right-4 bg-limestone/95 backdrop-blur-md text-espresso px-3.5 py-1.5 text-[10px] font-mono uppercase tracking-[0.2em] border border-espresso/20 pointer-events-none shadow-lg">
             {afterLabel[locale]}
           </div>
 
-          {/* Vertical Divider Track & Milled Bronze Handle */}
+          {/* 2026 Milled Bronze Precision Hairline & Minimalist Handle */}
           <div
-            className="absolute top-0 bottom-0 w-[1.5px] bg-limestone shadow-[0_0_24px_rgba(0,0,0,0.7)] pointer-events-none"
+            className="absolute top-0 bottom-0 w-[1.5px] bg-limestone shadow-[0_0_20px_rgba(0,0,0,0.8)] pointer-events-none"
             style={{ left: `${sliderPos}%` }}
           >
-            <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-espresso text-limestone border border-bronze flex items-center justify-center shadow-2xl backdrop-blur-sm group-hover:scale-105 transition-transform">
-              <MoveHorizontal className="w-4 h-4 text-limestone" />
+            {/* Elegant Vertical Knurled Pill Handle */}
+            <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-14 rounded-full bg-espresso/95 text-limestone border border-bronze/80 flex items-center justify-center gap-0.5 shadow-2xl backdrop-blur-sm group-hover:scale-105 transition-transform">
+              <span className="w-[1.5px] h-5 bg-limestone/70 rounded-full" />
+              <span className="w-[1.5px] h-5 bg-bronze rounded-full" />
             </div>
 
             {/* Subtle percentage indicator on divider */}
-            <div className="absolute bottom-4 -translate-x-1/2 bg-obsidian/85 backdrop-blur-md text-limestone px-2 py-0.5 text-[9px] font-mono tracking-wider border border-limestone/15 tabular-nums pointer-events-none">
+            <div className="absolute bottom-4 -translate-x-1/2 bg-obsidian/90 backdrop-blur-md text-limestone px-2 py-0.5 text-[9px] font-mono tracking-wider border border-limestone/20 tabular-nums pointer-events-none shadow-md">
               {Math.round(sliderPos)}%
             </div>
           </div>
 
-          {/* Interactive Architectural Cure Pins */}
+          {/* Interactive Architectural Cure Pins on Stage */}
           {showPins &&
             curePins.map((pin, idx) => {
-              const isSelected = activePin?.id === pin.id && isDrawerOpen;
+              const isSelected = activePinIndex === idx;
               return (
                 <button
                   key={pin.id}
                   type="button"
                   onPointerDown={(e) => {
                     e.stopPropagation();
-                    setActivePin(pin);
-                    setIsDrawerOpen(true);
+                    setActivePinIndex(idx);
                   }}
                   style={{ left: `${pin.x}%`, top: `${pin.y}%` }}
                   aria-label={pin.title[locale]}
                   aria-pressed={isSelected}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full flex items-center justify-center font-mono text-[11px] transition-all duration-300 shadow-xl ${
+                  className={`absolute -translate-x-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full flex items-center justify-center font-mono text-[11px] transition-all duration-300 shadow-xl cursor-pointer ${
                     isSelected
-                      ? "bg-oxblood text-limestone scale-110 ring-4 ring-limestone/90 shadow-[0_0_20px_rgba(74,30,27,0.7)]"
-                      : "bg-obsidian/85 backdrop-blur-md text-limestone hover:scale-110 border border-limestone/50"
+                      ? "bg-oxblood text-limestone scale-110 ring-4 ring-limestone/90 shadow-[0_0_24px_rgba(74,30,27,0.8)]"
+                      : "bg-obsidian/85 backdrop-blur-md text-limestone hover:scale-110 hover:bg-espresso border border-limestone/50"
                   }`}
                 >
                   <span className="tabular-nums font-semibold">{idx + 1}</span>
                 </button>
               );
             })}
+        </div>
+      </div>
 
-          {/* 3. DOCKED ARCHITECTURAL DIAGNOSTIC CARD (FLOATING OVER STAGE) */}
-          <AnimatePresence>
-            {activePin && isDrawerOpen && (
-              <motion.div
-                key={activePin.id}
-                initial={{ opacity: 0, y: 16, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 12, scale: 0.98 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute bottom-5 right-5 left-5 sm:left-auto sm:max-w-md bg-obsidian/92 backdrop-blur-md text-limestone border border-limestone/25 p-5 shadow-2xl z-30 space-y-4"
-              >
-                {/* Header Strip with Pin Switcher & Close */}
-                <div className="flex items-center justify-between border-b border-limestone/15 pb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-bronze font-medium">
-                      {locale === "en"
-                        ? `CURE PIN 0${activePinIndex + 1}`
-                        : `PINO TÉCNICO 0${activePinIndex + 1}`}
-                    </span>
-                    <span className="text-limestone/30">|</span>
-                    <div className="flex items-center gap-1.5">
-                      {curePins.map((p, i) => (
-                        <button
-                          key={p.id}
-                          type="button"
-                          onClick={() => setActivePin(p)}
-                          className={`w-5 h-5 rounded-full font-mono text-[10px] flex items-center justify-center border transition-colors ${
-                            activePin.id === p.id
-                              ? "bg-oxblood text-limestone border-oxblood"
-                              : "border-limestone/30 text-limestone/70 hover:border-limestone"
-                          }`}
-                        >
-                          {i + 1}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+      {/* 3. GROUNDED ARCHITECTURAL DIAGNOSTIC DOSSIER (BELOW THE STAGE - ZERO OBSTRUCTION) */}
+      {curePins.length > 0 && activePin && (
+        <div className="bg-travertine/70 border border-espresso/15 p-6 md:p-8 space-y-6 shadow-sm">
+          {/* Header Strip: Active Pin Navigation Tabs */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-espresso/15 pb-4">
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-bronze font-semibold">
+                {locale === "en" ? "ARCHITECTURAL INTERVENTION" : "INTERVENÇÃO ARQUITETÔNICA"}
+              </span>
+              <span className="text-espresso/30">|</span>
+              <span className="font-mono text-xs text-espresso font-medium tabular-nums">
+                {`0${activePinIndex + 1} / 0${curePins.length}`}
+              </span>
+            </div>
 
-                  <button
-                    type="button"
-                    onClick={() => setIsDrawerOpen(false)}
-                    aria-label="Close Diagnostic Overlay"
-                    className="p-1 text-sandstone/70 hover:text-limestone transition-colors"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
+            {/* Pin Switcher Buttons */}
+            <div className="flex flex-wrap items-center gap-2">
+              {curePins.map((p, idx) => (
+                <button
+                  key={p.id}
+                  type="button"
+                  onClick={() => setActivePinIndex(idx)}
+                  className={`px-3 py-1 text-xs font-mono uppercase tracking-[0.14em] border transition-colors ${
+                    activePinIndex === idx
+                      ? "bg-oxblood text-limestone border-oxblood font-medium shadow-sm"
+                      : "bg-limestone/80 text-espresso border-espresso/20 hover:border-bronze"
+                  }`}
+                >
+                  <span className="mr-1.5 font-bold">0{idx + 1}</span>
+                  <span className="hidden md:inline">{p.title[locale].split(" ")[0]}</span>
+                </button>
+              ))}
+            </div>
+          </div>
 
-                {/* Title */}
-                <h3 className="font-serif text-xl sm:text-2xl text-limestone font-light leading-snug">
+          {/* Active Diagnostic Detail */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activePin.id}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-6"
+            >
+              <div>
+                <h3 className="font-serif text-2xl sm:text-3xl text-espresso font-light leading-snug">
                   {activePin.title[locale]}
                 </h3>
+              </div>
 
-                {/* Before Problem vs After Cure */}
-                <div className="space-y-2.5 text-xs">
-                  <div className="p-3 bg-limestone/5 border border-limestone/10">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-sandstone/70 block mb-1">
-                      {locale === "en" ? "THE SPATIAL BOTTLENECK" : "O GARGALO ESTRUTURAL"}
-                    </span>
-                    <p className="text-sandstone/85 leading-relaxed">
-                      {activePin.beforeProblem[locale]}
-                    </p>
+              {/* Two-Column Diagnostic Breakdown */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {/* Before: Spatial Bottleneck */}
+                <div className="p-5 bg-limestone/80 border border-espresso/10 space-y-2">
+                  <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-umber font-medium">
+                    <span className="text-oxblood font-serif italic text-sm">I.</span>
+                    <span>{locale === "en" ? "The Spatial Bottleneck (Original Condition)" : "O Gargalo Estrutural (Condição Original)"}</span>
                   </div>
-
-                  <div className="p-3 bg-oxblood/20 border border-oxblood/40">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-bronze font-semibold block mb-1">
-                      {locale === "en"
-                        ? "THE ARCHITECTURAL RESOLUTION"
-                        : "A RESOLUÇÃO DO ESTÚDIO"}
-                    </span>
-                    <p className="text-limestone leading-relaxed">
-                      {activePin.afterCure[locale]}
-                    </p>
-                  </div>
+                  <p className="text-umber text-sm leading-relaxed font-light">
+                    {activePin.beforeProblem[locale]}
+                  </p>
                 </div>
 
-                {/* Material Specification */}
-                <div className="pt-2 border-t border-limestone/15 flex items-center justify-between text-[11px] font-mono">
-                  <span className="text-sandstone/70 uppercase tracking-widest text-[9px]">
-                    SPECIFICATION:
+                {/* After: Architectural Resolution */}
+                <div className="p-5 bg-limestone/80 border border-bronze/40 space-y-2">
+                  <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-bronze font-semibold">
+                    <span className="text-bronze font-serif italic text-sm">II.</span>
+                    <span>{locale === "en" ? "The Architectural Cure (Studio Intervention)" : "A Resolução Construtiva (Intervenção)"}</span>
+                  </div>
+                  <p className="text-espresso text-sm leading-relaxed font-light">
+                    {activePin.afterCure[locale]}
+                  </p>
+                </div>
+              </div>
+
+              {/* Specification Footer */}
+              <div className="pt-4 border-t border-espresso/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono">
+                <div className="flex items-center gap-2">
+                  <span className="text-sandstone/90 uppercase tracking-widest text-[10px]">
+                    {locale === "en" ? "MATERIAL SPECIFICATION:" : "ESPECIFICAÇÃO DE MATERIAIS:"}
                   </span>
-                  <span className="text-bronze truncate ml-2">
+                  <span className="text-espresso font-medium">
                     {activePin.materialSpec}
                   </span>
                 </div>
-              </motion.div>
-            )}
+
+                <button
+                  type="button"
+                  onClick={() => openConcierge()}
+                  className="inline-flex items-center gap-1.5 text-oxblood hover:text-espresso uppercase tracking-[0.15em] font-medium transition-colors"
+                >
+                  <span>{locale === "en" ? "Inquire for Similar Scope" : "Consultar Escopo Semelhante"}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </motion.div>
           </AnimatePresence>
         </div>
-      </div>
+      )}
 
       {/* 4. GROUNDED FOOTER STRIP */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 text-xs text-umber">
@@ -361,8 +371,8 @@ export default function BeforeAfterSlider({
           <span className="text-bronze">●</span>
           <span>
             {locale === "en"
-              ? "Drag divider horizontally or click pins to inspect resolution"
-              : "Arraste o divisor ou clique nos pinos para inspecionar a intervenção"}
+              ? "Drag divider horizontally or select pin tabs to inspect structural intervention"
+              : "Arraste o divisor ou selecione os pinos para inspecionar a intervenção"}
           </span>
         </div>
 

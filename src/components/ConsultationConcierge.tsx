@@ -183,8 +183,8 @@ export default function ConsultationConcierge() {
                   <Send className="w-3.5 h-3.5" />
                   <span>
                     {locale === "en"
-                      ? "1. Project Brief (Brevo)"
-                      : "1. Briefing do Projeto"}
+                      ? "1. Commission Dossier"
+                      : "1. Dossiê do Projeto"}
                   </span>
                 </button>
                 <button
@@ -199,8 +199,8 @@ export default function ConsultationConcierge() {
                   <Calendar className="w-3.5 h-3.5" />
                   <span>
                     {locale === "en"
-                      ? "2. Live Calendar (Cal.com)"
-                      : "2. Agenda Ao Vivo (Cal.com)"}
+                      ? "2. Private Video Session"
+                      : "2. Sessão Privada de Vídeo"}
                   </span>
                 </button>
               </div>
@@ -240,8 +240,8 @@ export default function ConsultationConcierge() {
                       >
                         <span>
                           {locale === "en"
-                            ? "Pick Zoom Time on Cal.com"
-                            : "Escolher Horário no Cal.com"}
+                            ? "Select Video Consultation Time"
+                            : "Escolher Horário de Consulta"}
                         </span>
                       </button>
                     </div>
@@ -455,14 +455,14 @@ export default function ConsultationConcierge() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.14em] text-oxblood underline underline-offset-4"
                     >
-                      <span>Open Cal.com</span>
+                      <span>{locale === "en" ? "Open Fullscreen Scheduler" : "Abrir Agendador Completo"}</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
 
                   <div className="w-full h-[440px] border border-espresso/20 bg-travertine/40 overflow-hidden relative">
                     <iframe
-                      title="Cal.com Private Consultation Booking"
+                      title="Private Consultation Booking"
                       src={`https://cal.com/${STUDIO_CONFIG.calLink}?embed=true&theme=light`}
                       className="w-full h-full border-0"
                     />
@@ -473,7 +473,7 @@ export default function ConsultationConcierge() {
 
             {/* Bottom Reassurance Footer */}
             <div className="pt-6 mt-6 border-t border-espresso/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[11px] font-mono text-umber">
-              <span>ENCRYPTED STUDIO TRANSMISSION · BREVO & CAL.COM</span>
+              <span>CONFIDENTIAL STUDIO ARCHITECTURE · LONDON & SALVADOR</span>
               <span>RESPONSE WITHIN 24 HOURS</span>
             </div>
           </motion.aside>

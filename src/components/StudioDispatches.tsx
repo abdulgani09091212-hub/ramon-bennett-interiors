@@ -1,225 +1,185 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { ArrowUpRight, Instagram, MessageSquare, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, Instagram } from "lucide-react";
 import { useStudio } from "@/context/StudioContext";
 import { STUDIO_CONFIG } from "@/data/studioData";
 
 interface DispatchItem {
   id: string;
   image: string;
+  objectPosition?: string;
   account: "@ramonbennettofficial" | "@ramonbennettinteriors";
   profileUrl: string;
   city: string;
   tag: { en: string; pt: string };
+  title: { en: string; pt: string };
   caption: { en: string; pt: string };
-  aspect: "portrait" | "landscape" | "square";
 }
 
 const DISPATCHES: DispatchItem[] = [
-  {
-    id: "post-ramon-london",
-    image: "/images/people_ramon.png",
-    account: "@ramonbennettofficial",
-    profileUrl: STUDIO_CONFIG.instagramPersonal,
-    city: "LONDON SW7",
-    tag: {
-      en: "PRINCIPAL PROFILE · SPATIAL PSYCHOLOGY",
-      pt: "PERFIL DO FUNDADOR · PSICOLOGIA ESPACIAL",
-    },
-    caption: {
-      en: "“A room is not a static picture. It is the emotional vessel of your daily life.” Reflecting on seventeen years in London examining the architecture of human relationships.",
-      pt: "“Uma sala não é uma imagem estática. É o refúgio emocional da sua vida diária.” Reflexões sobre dezessete anos em Londres investigando a psicologia das relações humanas.",
-    },
-    aspect: "portrait",
-  },
-  {
-    id: "post-marcia-drafting",
-    image: "/images/studio_craftsmanship_1.jpg",
-    account: "@ramonbennettinteriors",
-    profileUrl: STUDIO_CONFIG.instagramStudio,
-    city: "SALVADOR BAHIA",
-    tag: {
-      en: "ATELIER HERITAGE · EST. 1996",
-      pt: "ACERVO DO ATELIER · FUNDADO EM 1996",
-    },
-    caption: {
-      en: "Aunt Márcia Ribeiro drafting full-scale joinery blueprints by hand at our Salvador atelier. Thirty years of South American hardwood selection and millimetric joinery.",
-      pt: "Tia Márcia Ribeiro desenhando pranchas executivas à mão em nosso atelier de Salvador. Três décadas de seleção de madeiras nobres e encaixes milimétricos.",
-    },
-    aspect: "landscape",
-  },
-  {
-    id: "post-carved-settee",
-    image: "/images/studio_craftsmanship_2.jpeg",
-    account: "@ramonbennettinteriors",
-    profileUrl: STUDIO_CONFIG.instagramStudio,
-    city: "SALVADOR BAHIA",
-    tag: {
-      en: "HEIRLOOM FURNITURE · BESPOKE JOINERY",
-      pt: "MOBILIÁRIO DE HERANÇA · ALTA MARCENARIA",
-    },
-    caption: {
-      en: "Hand-carved solid Brazilian hardwood settee with botanical archival upholstery. Proof of an enduring family tradition sculpted to outlast decades.",
-      pt: "Recamier em madeira maciça entalhada à mão com estofamento botânico exclusivo. A prova de uma tradição familiar feita para atravessar gerações.",
-    },
-    aspect: "square",
-  },
-  {
-    id: "post-golden-salon",
-    image: "/images/home_golden_living_room.png",
-    account: "@ramonbennettinteriors",
-    profileUrl: STUDIO_CONFIG.instagramStudio,
-    city: "FLAGSHIP SALON",
-    tag: {
-      en: "CIRCADIAN LIGHTING · 2400K SANCTUARY",
-      pt: "ILUMINAÇÃO CIRCADIANA · 2400K",
-    },
-    caption: {
-      en: "Golden hour balance across fluted Freijó cabinetry and Roman travertine. Every light source calibrated to lower cortisol and induce restorative evening presence.",
-      pt: "Equilíbrio de luz natural e marcenaria canelada em Freijó. Cada ponto de luz é calibrado para desacelerar a mente no entardecer.",
-    },
-    aspect: "landscape",
-  },
-  {
-    id: "post-alphaville-salon",
-    image: "/images/residential_alphaville_2.png",
-    account: "@ramonbennettinteriors",
-    profileUrl: STUDIO_CONFIG.instagramStudio,
-    city: "ALPHAVILLE I",
-    tag: {
-      en: "RESIDENTIAL ARCHITECTURE · TURNKEY",
-      pt: "ARQUITETURA RESIDENCIAL · TURNKEY",
-    },
-    caption: {
-      en: "Choreographing proximity: curved terracotta daybed inviting unhurried conversation, governed end-to-end by Mariana Figueiredo.",
-      pt: "Coreografando encontros: sofá curvo em terracota que convida ao diálogo, com governança executiva de Mariana Figueiredo.",
-    },
-    aspect: "square",
-  },
   {
     id: "post-courtyard-pool",
     image: "/images/home_courtyard_pool.jpg",
     account: "@ramonbennettinteriors",
     profileUrl: STUDIO_CONFIG.instagramStudio,
-    city: "SALVADOR BAHIA",
+    city: "SALVADOR · BAHIA",
     tag: {
-      en: "BIOPHILIC RETREAT · ARCHITECTURE",
-      pt: "REFÚGIO BIOFÍLICO · ARQUITETURA",
+      en: "BIOPHILIC COURTYARD ARCHITECTURE",
+      pt: "ARQUITETURA BIOFÍLICA DE PÁTIO",
+    },
+    title: {
+      en: "Hand-Laid Regional Stone & Still Water",
+      pt: "Alvenaria em Pedra Natural e Água Contemplativa",
     },
     caption: {
-      en: "Private courtyard pool sanctuary bridging tropical coastal vegetation with monolithic natural stone terraces.",
-      pt: "Pátio privativo com piscina integrada à vegetação litorânea e terraços em rocha natural monolítica.",
+      en: "Private courtyard plunge pool bridging tropical coastal foliage with monolithic dry-stacked stone masonry and limewashed walls.",
+      pt: "Pátio privativo integrando vegetação costeira a muros em pedra natural esculpida à mão e paredes em cal.",
     },
-    aspect: "landscape",
+  },
+  {
+    id: "post-classical-archway",
+    image: "/images/home_golden_living_room.png",
+    objectPosition: "object-right",
+    account: "@ramonbennettofficial",
+    profileUrl: STUDIO_CONFIG.instagramPersonal,
+    city: "LONDON · SW7",
+    tag: {
+      en: "CIRCADIAN LIGHT & PROPORTION",
+      pt: "LUZ CIRCADIANA & PROPORÇÃO",
+    },
+    title: {
+      en: "Morning Raking Light Across Herringbone Oak",
+      pt: "Luz Natural Matinal Sobre Parquet em Espinha de Peixe",
+    },
+    caption: {
+      en: "Classical sightlines framed through limestone thresholds—where antique oil paintings, Nero Marquina plinths, and tactile bouclé coexist.",
+      pt: "Eixos visuais clássicos emoldurados por portais em pedra — onde telas históricas, pedestais em mármore e bouclé dialogam.",
+    },
+  },
+  {
+    id: "post-joinery-macro",
+    image: "/images/12_salvador_atelier_woodworking.jpg",
+    account: "@ramonbennettinteriors",
+    profileUrl: STUDIO_CONFIG.instagramStudio,
+    city: "SALVADOR · ATELIER",
+    tag: {
+      en: "30-YEAR BESPOKE JOINERY WORKSHOP",
+      pt: "OFICINA PRÓPRIA DE ALTA MARCENARIA",
+    },
+    title: {
+      en: "Hand-Fitted Brass Inlays & Fluted Freijó",
+      pt: "Frisos em Latão Ajustados à Mão no Freijó",
+    },
+    caption: {
+      en: "Inside our Salvador workshop: master joiners fitting unlacquered brushed brass into solid South American hardwood cabinetry.",
+      pt: "Dentro da nossa oficina em Salvador: mestres marceneiros ajustando latão escovado em painéis de madeira maciça.",
+    },
   },
 ];
 
 export default function StudioDispatches() {
   const { locale, openConcierge } = useStudio();
-  const [activeAccount, setActiveAccount] = useState<"all" | "@ramonbennettofficial" | "@ramonbennettinteriors">("all");
-
-  const filtered =
-    activeAccount === "all"
-      ? DISPATCHES
-      : DISPATCHES.filter((d) => d.account === activeAccount);
 
   return (
-    <section className="py-24 lg:py-36 bg-limestone text-espresso border-b border-espresso/15">
-      <div className="max-w-[1440px] mx-auto px-5 md:px-10 space-y-16">
-        {/* Header Strip with Dual-Brand Proof */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-espresso/15 pb-8">
-          <div className="space-y-3 max-w-2xl">
-            <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-espresso tracking-tight leading-[1.04]">
+    <section className="py-24 lg:py-32 bg-limestone text-espresso border-b border-espresso/15">
+      <div className="max-w-[1440px] mx-auto px-5 md:px-10 space-y-14">
+        {/* Editorial Header + Dual Verified Social Channel Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end border-b border-espresso/15 pb-10">
+          <div className="lg:col-span-6 space-y-3">
+            <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-bronze block">
               {locale === "en"
-                ? "Studio Dispatches: London & Salvador in Practice"
-                : "Diário do Atelier: Londres e Salvador em Ação"}
+                ? "UNIFIED IDENTITY · STUDIO & PRINCIPAL DISPATCHES"
+                : "IDENTIDADE UNIFICADA · ATELIER & FUNDADOR"}
+            </span>
+            <h2 className="font-serif text-4xl sm:text-5xl font-light text-espresso tracking-tight leading-[1.05]">
+              {locale === "en"
+                ? "Live From London & Salvador"
+                : "Crônicas Visuais: Londres & Salvador"}
             </h2>
-            <p className="text-umber text-base sm:text-lg leading-relaxed font-light">
-              {locale === "en"
-                ? "Authentic records from our London spatial psychology practice and Salvador joinery atelier. Follow our principal and studio across live commissions, keynote addresses, and material fabrication."
-                : "Registros autênticos da nossa prática de psicologia espacial em Londres e do atelier de marcenaria em Salvador. Acompanhe o fundador e o estúdio em obras reais, palestras e execução."}
-            </p>
           </div>
 
-          {/* Account Filter Pills & Direct Follow Links */}
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setActiveAccount("all")}
-              className={`px-4 py-2.5 text-xs font-mono uppercase tracking-[0.16em] border transition-colors ${
-                activeAccount === "all"
-                  ? "bg-espresso text-limestone border-espresso font-medium"
-                  : "bg-travertine/60 text-espresso border-espresso/20 hover:border-bronze"
-              }`}
-            >
-              {locale === "en" ? "All Dispatches (06)" : "Todos os Registros (06)"}
-            </button>
-
+          {/* High-Status Tactile Dual Instagram Channel Cards */}
+          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <a
               href={STUDIO_CONFIG.instagramStudio}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-oxblood hover:bg-espresso text-limestone px-4 py-2.5 text-xs font-mono uppercase tracking-[0.16em] transition-colors"
+              className="group p-4 bg-travertine/65 border border-espresso/15 hover:border-bronze transition-all flex items-center justify-between"
             >
-              <Instagram className="w-3.5 h-3.5" />
-              <span>@ramonbennettinteriors</span>
-              <ArrowUpRight className="w-3 h-3" />
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-xs font-mono text-espresso font-medium">
+                  <Instagram className="w-3.5 h-3.5 text-bronze" />
+                  <span>@ramonbennettinteriors</span>
+                </div>
+                <p className="text-[11px] text-umber font-light">
+                  {locale === "en"
+                    ? "Architectural Portfolio & Joinery Atelier"
+                    : "Portfólio de Obras & Marcenaria"}
+                </p>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-bronze group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
 
             <a
               href={STUDIO_CONFIG.instagramPersonal}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-espresso/25 hover:border-bronze text-espresso px-4 py-2.5 text-xs font-mono uppercase tracking-[0.16em] transition-colors"
+              className="group p-4 bg-travertine/65 border border-espresso/15 hover:border-bronze transition-all flex items-center justify-between"
             >
-              <Instagram className="w-3.5 h-3.5 text-bronze" />
-              <span>@ramonbennettofficial</span>
-              <ArrowUpRight className="w-3 h-3" />
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-xs font-mono text-espresso font-medium">
+                  <Instagram className="w-3.5 h-3.5 text-bronze" />
+                  <span>@ramonbennettofficial</span>
+                </div>
+                <p className="text-[11px] text-umber font-light">
+                  {locale === "en"
+                    ? "Founder, Spatial Psychology & Keynotes"
+                    : "Fundador, Psicologia Espacial & Palestras"}
+                </p>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-bronze group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </div>
         </div>
 
-        {/* 6-Plate Curated Visual Grid (Asymmetric Editorial Exhibition) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
-          {filtered.map((item) => (
+        {/* 3-Plate Curated Visual Triptych (Zero Duplication with Above Sections) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {DISPATCHES.map((item) => (
             <article
               key={item.id}
-              className="group border border-espresso/15 bg-travertine/40 overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-bronze hover:shadow-xl"
+              className="group border border-espresso/15 bg-travertine/35 overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-bronze"
             >
-              {/* Image Frame */}
               <a
                 href={item.profileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative aspect-[4/3] w-full overflow-hidden bg-obsidian block"
+                className="relative aspect-[4/3] w-full overflow-hidden bg-travertine block"
               >
                 <Image
                   src={item.image}
                   alt={item.caption[locale]}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover object-center editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105"
+                  loading="eager"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className={`object-cover ${
+                    item.objectPosition || "object-center"
+                  } editorial-grade transition-transform duration-700 ease-editorial group-hover:scale-105`}
                 />
-
-                {/* Account & Location Pill */}
-                <div className="absolute top-3.5 left-3.5 bg-obsidian/85 backdrop-blur-md text-limestone px-3 py-1 text-[10px] font-mono uppercase tracking-[0.18em] border border-limestone/15 flex items-center gap-1.5">
-                  <Instagram className="w-3 h-3 text-bronze" />
-                  <span>{item.account}</span>
-                </div>
-
-                <div className="absolute top-3.5 right-3.5 bg-limestone/90 backdrop-blur-md text-espresso px-2.5 py-1 text-[9.5px] font-mono uppercase tracking-widest border border-espresso/15 tabular-nums">
+                <div className="absolute bottom-3 left-3 bg-obsidian/85 backdrop-blur-md text-limestone px-3 py-1 text-[10px] font-mono uppercase tracking-[0.18em]">
                   {item.city}
                 </div>
               </a>
 
-              {/* Caption & Metadata Body */}
               <div className="p-6 space-y-4 flex flex-col justify-between flex-grow">
                 <div className="space-y-2">
                   <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-bronze block">
                     {item.tag[locale]}
                   </span>
+                  <h3 className="font-serif text-2xl text-espresso font-light leading-snug">
+                    {item.title[locale]}
+                  </h3>
                   <p className="text-umber text-sm leading-relaxed font-light">
                     {item.caption[locale]}
                   </p>
@@ -232,7 +192,7 @@ export default function StudioDispatches() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-oxblood hover:text-espresso font-medium uppercase tracking-[0.15em] transition-colors"
                   >
-                    <span>{locale === "en" ? "View on Instagram" : "Ver no Instagram"}</span>
+                    <span>{item.account}</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
 
@@ -247,51 +207,6 @@ export default function StudioDispatches() {
               </div>
             </article>
           ))}
-        </div>
-
-        {/* Global Social Trust Bar */}
-        <div className="bg-travertine/80 border border-espresso/15 p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-1">
-            <p className="font-serif text-2xl text-espresso font-light">
-              {locale === "en"
-                ? "Direct Dialogue with Ramon Bennett & The Studio"
-                : "Diálogo Direto com Ramon Bennett e o Estúdio"}
-            </p>
-            <p className="text-umber text-sm font-light">
-              {locale === "en"
-                ? "Connect directly for confidential commissions, architectural lectures, and joinery fabrication."
-                : "Entre em contato para projetos confidenciais, palestras de arquitetura e encomendas de marcenaria."}
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              onClick={() => openConcierge()}
-              className="inline-flex items-center gap-2 bg-oxblood hover:bg-espresso text-limestone px-6 py-3.5 text-xs uppercase tracking-[0.18em] font-medium transition-colors"
-            >
-              <span>{locale === "en" ? "Initiate Brief" : "Iniciar Briefing"}</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </button>
-
-            <a
-              href={`https://wa.me/${
-                locale === "en"
-                  ? STUDIO_CONFIG.whatsappLondon.replace(/\D/g, "")
-                  : STUDIO_CONFIG.whatsappSalvador.replace(/\D/g, "")
-              }?text=${encodeURIComponent(
-                locale === "en"
-                  ? "Hello Ramon Bennett Studio, I am inquiring regarding a private architectural commission."
-                  : "Olá estúdio Ramon Bennett, gostaria de consultar a disponibilidade para um projeto privado."
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-espresso/25 hover:border-bronze text-espresso px-5 py-3.5 text-xs font-mono uppercase tracking-[0.16em] transition-colors"
-            >
-              <MessageSquare className="w-3.5 h-3.5 text-bronze" />
-              <span>{locale === "en" ? "London / Bahia WhatsApp" : "WhatsApp Direto"}</span>
-            </a>
-          </div>
         </div>
       </div>
     </section>
